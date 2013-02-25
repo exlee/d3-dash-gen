@@ -1,0 +1,20 @@
+<!-- single file version -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="css/github.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8" />
+</head>
+<body>
+<h1>Quadtree Geom</h1>
+<p>A quadtree is a two-dimensional recursive spatial subdivision. This implementation uses square partitions, dividing each square into four equally-sized squares. Each point exists in a unique node; if multiple points are in the same position, some points may be stored on internal nodes rather than leaf nodes. Quadtrees can be used to accelerate various spatial operations, such as the Barnes-Hut approximation for computing n-body forces, or collision detection.</p>
+<p><a name="wiki-quadtree" href="#wiki-quadtree">#</a> d3.geom.<b>quadtree</b>(<i>points</i>, [<i>x1</i>, <i>y1</i>, <i>x2</i>, <i>y2</i> | <i>width</i>, <i>height</i>])</p>
+<p><a href="http://bl.ocks.org/4343214"><img src="https://raw.github.com/gist/4343214/thumbnail.png" width="202"></a></p>
+<p>Constructs a new quadtree for the specified array of points. Bounds are optional and can be specified explicitly as <em>x1</em>, <em>y1</em>, <em>x2</em>, <em>y2</em>, or as <em>width</em>, <em>height</em>, which is equivalent to <em>0</em>, <em>width</em>, <em>0</em>, <em>height</em>. </p>
+<p><a name="wiki-add" href="#wiki-add">#</a> quadtree.<b>add</b>(<i>point</i>)</p>
+<p>Adds a new point to the quadtree.</p>
+<p><a name="wiki-visit" href="#wiki-visit">#</a> quadtree.<b>visit</b>(<i>callback</i>)</p>
+<p>The specified <em>callback</em> is invoked with the arguments (<em>node</em>, <em>x1</em>, <em>y1</em>, <em>x2</em>, <em>y2</em>) for each quadtree node pre-order, provided the <em>callback</em> returns false. If <em>callback</em> returns true for a node, then the children of that node are not visited.</p>
+
+</body>
+</html>

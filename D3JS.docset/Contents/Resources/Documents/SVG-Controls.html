@@ -1,0 +1,38 @@
+<!-- single file version -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="css/github.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8" />
+</head>
+<body>
+<h1>SVG Controls</h1>
+<h2>Brush</h2>
+<p><a name="wiki-brush" href="#wiki-brush">#</a> d3.svg.<b>brush</b>()</p>
+<p>Constructs a new brush with no default <em>x</em>- and <em>y</em>-scale, and an empty extent.</p>
+<p><a name="wiki-_brush" href="#wiki-_brush">#</a> <b>brush</b>(<i>selection</i>)</p>
+<p>Draws or redraws this brush into the specified <em>selection</em> of elements. The brush may be drawn into multiple elements simultaneously, but not that these brushes would share the same backing extent; typically, a brush is drawn into only one element at a time.</p>
+<p>The <em>selection</em> can also be a <a href="Transitions.html">transition</a>; however, the brush does not yet support automatic transitions, so the redraw will happen instantaneously. In a subsequent release, the brush will smoothly transition to the new extent when redrawn after the <a href=".html#wiki-brush_extent">extent</a> is set.</p>
+<p><a name="wiki-brush_x" href="#wiki-brush_x">#</a> brush.<b>x</b>([<i>scale</i>])</p>
+<p>Gets or sets the <em>x</em>-scale associated with the brush. If <em>scale</em> is specified, sets the <em>x</em>-scale to the specified scale and returns the brush; if <em>scale</em> is not specified, returns the current <em>x</em>-scale, which defaults to null. The scale is typically defined as a <a href="Quantitative-Scales.html">quantitative scale</a>, in which case the <a href=".html#wiki-extent">extent</a> is in data space from the scale&#39;s <a href="Quantitative-Scales#wiki-linear_domain">domain</a>; however, it may instead be defined as an <a href="Ordinal-Scales">ordinal scale</a>, where the extent is in pixel space from the scale&#39;s <a href="Ordinal-Scales#wiki-ordinal_rangeExtent">range extent</a>.</p>
+<p><a name="wiki-brush_y" href="#wiki-brush_y">#</a> brush.<b>y</b>([<i>scale</i>])</p>
+<p>Gets or sets the <em>y</em>-scale associated with the brush. If <em>scale</em> is specified, sets the <em>y</em>-scale to the specified scale and returns the brush; if <em>scale</em> is not specified, returns the current <em>y</em>-scale, which defaults to null. The scale is typically defined as a <a href="Quantitative-Scales.html">quantitative scale</a>, in which case the <a href=".html#wiki-extent">extent</a> is in data space from the scale&#39;s <a href="Quantitative-Scales#wiki-linear_domain">domain</a>; however, it may instead be defined as an <a href="Ordinal-Scales">ordinal scale</a>, where the extent is in pixel space from the scale&#39;s <a href="Ordinal-Scales#wiki-ordinal_rangeExtent">range extent</a>.</p>
+<p><a name="wiki-brush_extent" href="#wiki-brush_extent">#</a> brush.<b>extent</b>([<i>values</i>])</p>
+<p>Gets or sets the current brush extent. If <em>values</em> is specified, sets the extent to the specified values and returns the brush; if <em>values</em> is not specified, returns the current extent. The definition of the extent depends on the associated scales. If both an <em>x</em>- and <em>y</em>-scale are available, then the extent is the two-dimensional array [‍[ <em>x0</em>, <em>y0</em> ], [ <em>x1</em>, <em>y1</em> ]], where <em>x0</em> and <em>y0</em> are the lower bounds of the extent, and <em>x1</em> and <em>y1</em> are the upper bounds of the extent. If only the <em>x</em>-scale is available, then the extent is defined as the one-dimensional array [ <em>x0</em>, <em>x1</em> ]; likewise, if only the <em>y</em>-scale is available, then the extent is [ <em>y0</em>, <em>y1</em> ]. In neither scale is available, then the extent is null.</p>
+<p>When the extent is set to <em>values</em>, the resulting extent is preserved exactly. However, as soon as the brush is moved by the user (on mousemove following a mousedown), then the extent must be recomputed by calling <a href="Quantitative-Scales.html#wiki-linear_invert">scale.invert</a>. Note that the values may be slightly imprecise due to the limited precision of pixels.</p>
+<p>Note that this does not automatically redraw the brush or dispatch any events to listeners. To redraw the brush, call <a href=".html#wiki-_brush">brush</a> on a selection or transition.</p>
+<p><a name="wiki-brush_clear" href="#wiki-brush_clear">#</a> brush.<b>clear</b>()</p>
+<p>Clears the extent, making the brush extent <a href=".html#wiki-brush_empty">empty</a>.</p>
+<p><a name="wiki-brush_empty" href="#wiki-brush_empty">#</a> brush.<b>empty</b>()</p>
+<p>Returns true if and only if the brush extent is empty. When a brush is created, it is initially empty; the brush may also become empty with a single click on the background without moving, or if the extent is <a href=".html#wiki-brush_clear">cleared</a>. A brush is considered empty if it has zero-width or zero-height. When the brush is empty, its extent is not strictly defined.</p>
+<p><a name="wiki-brush_on" href="#wiki-brush_on">#</a> brush.<b>on</b>(<i>type</i>[, <i>listener</i>])</p>
+<p>Gets or sets the <em>listener</em> for the specified event <em>type</em>. Brushes support three types of events:</p>
+<ul>
+<li>brushstart - on mousedown</li>
+<li>brush - on mousemove, if the brush extent has changed</li>
+<li>brushend - on mouseup</li>
+</ul>
+<p>Note that when clicking on the background, a mousedown also triggers a brushmove, since the brush extent is immediately cleared to start a new extent.</p>
+
+</body>
+</html>

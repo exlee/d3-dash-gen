@@ -1,0 +1,26 @@
+<!-- single file version -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="css/github.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8" />
+</head>
+<body>
+<h1>Drag Behavior</h1>
+<p>This behavior automatically creates event listeners to handle drag gestures on an element. Both mouse events and touch events are supported.</p>
+<p><a name="wiki-drag" href="Drag-Behavior.html#wiki-drag">#</a> d3.behavior.<b>drag</b>()</p>
+<p>Constructs a new drag behavior.</p>
+<p><a name="wiki-on" href="Drag-Behavior.html#wiki-on">#</a> drag.<b>on</b>(<i>type</i>, <i>listener</i>)</p>
+<p>Registers the specified <em>listener</em> to receive events of the specified <em>type</em> from the drag behavior. The following events are supported:</p>
+<ul>
+<li>&quot;dragstart&quot;: fired when a drag gesture is started.</li>
+<li>&quot;drag&quot;: fired when the element is dragged. d3.event will contain &quot;x&quot; and &quot;y&quot; properties representing the current absolute drag coordinates of the element. It will also contain &quot;dx&quot; and &quot;dy&quot; properties representing the element&#39;s coordinates relative to its position at the beginning of the gesture.</li>
+<li>&quot;dragend&quot;: fired when the drag gesture has finished.</li>
+</ul>
+<p><a name="wiki-origin" href="Drag-Behavior.html#wiki-origin">#</a> drag.<b>origin</b>([<i>origin</i>])</p>
+<p>If <em>origin</em> is specified, sets the origin accessor to the specified function. If <em>origin</em> is not specified, returns the current origin accessor which defaults to null.</p>
+<p>An <em>origin accessor</em> is used to determine the starting position (the “origin”) of the element being dragged; this allows the drag behavior to preserve the offset between the mouse position and the starting element position during drag. If the origin accessor is null, then the element position is set to the mouse position on drag; this can cause a noticeable jump on large elements. If an origin accessor is specified, the function is called on mousedown. The function is invoked in the same manner as other operator functions, being passed the current datum <code>d</code> and index <code>i</code>, with the <code>this</code> context as the clicked-on DOM element. To access the current event, use the global <a href="Selections.html#wiki-d3_event">d3.event</a>. The origin accessor must return an object with <code>x</code> and <code>y</code> properties representing the starting coordinates of the element being dragged.</p>
+<p>Frequently the origin accessor is specified as <code>Object</code>, which is equivalent to the identity function: <code>function(d) { return d; }</code>. This is suitable when the datum bound to the dragged element is already an object with <code>x</code> and <code>y</code> attributes representing its current position. For example: <a href="http://bl.ocks.org/1557377">http://bl.ocks.org/1557377</a></p>
+
+</body>
+</html>

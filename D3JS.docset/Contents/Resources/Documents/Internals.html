@@ -1,0 +1,38 @@
+<!-- single file version -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="css/github.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8" />
+</head>
+<body>
+<h1>Internals</h1>
+<p>Various utilities for implementing reusable components.</p>
+<h2>Functions</h2>
+<p><a name="wiki-functor" href="Internals.html#wiki-functor">#</a> d3.<b>functor</b>(<i>value</i>)</p>
+<p>If the specified <em>value</em> is a function, returns the specified value. Otherwise, returns a function that returns the specified value. This method is used internally as a lazy way of upcasting constant values to functions, in cases where a property may be specified either as a function or a constant. For example, many D3 layouts allow properties to be specified this way, and it simplifies the implementation if we automatically convert constant values to functions.</p>
+<p><a name="wiki-rebind" href="Internals.html#wiki-rebind">#</a> d3.<b>rebind</b>(<i>target</i>, <i>source</i>, <i>names…</i>)</p>
+<p>Copies the methods with the specified <em>names</em> from <em>source</em> to <em>target</em>, and returns <em>target</em>. If a method is called with no arguments, it is invoked and its return value is returned (“getter” mode). If the method is called with arguments, it is invoked and <em>target</em> is returned (“setter” mode). The rebind operator allows inherited methods (mix-ins) to be rebound to a subclass on a different object.</p>
+<h2>Events</h2>
+<p>D3 uses a dispatcher to handle custom events.</p>
+<p><a name="wiki-d3_dispatch" href="Internals.html#wiki-d3_dispatch">#</a> d3.<b>dispatch</b>(<i>types…</i>)</p>
+<p>Creates a new dispatcher object for the specified <em>types</em>. Each argument is a string representing the name of the event type, such as &quot;zoom&quot; or &quot;change&quot;. The returned object is an associative array; each type name is associated with a dispatch object. For example, if you wanted to create an event dispatcher for &quot;start&quot; and &quot;end&quot; events, you can say:</p>
+<pre><code class="lang-javascript">var dispatch = d3.dispatch(&quot;start&quot;, &quot;end&quot;);</code></pre>
+<p>Then, you can access the dispatchers for the different event types as <code>event.start</code> and <code>event.end</code>. For example, you might add an event listener:</p>
+<pre><code class="lang-javascript">dispatch.on(&quot;start&quot;, listener);</code></pre>
+<p>And then later dispatch an event to all registered listeners:</p>
+<pre><code class="lang-javascript">dispatch.start();</code></pre>
+<p>For details on how to pass arguments to listeners, see <a href=".html#wiki-dispatch">dispatch</a>.</p>
+<p><a name="wiki-dispatch_on" href="Internals.html#wiki-dispatch_on">#</a> dispatch.<b>on</b>(<i>type</i>[, <i>listener</i>])</p>
+<p>Adds or removes an event <em>listener</em> for the specified <em>type</em>. The <em>type</em> is a string event type name, such as &quot;start&quot; or &quot;end&quot;.  The specified <em>listener</em> is invoked with the context and arguments determined by the caller; see <a href=".html#wiki-dispatch">dispatch</a>. </p>
+<p>If an event listener was already registered for the same type, the existing listener is removed before the new listener is added. To register multiple listeners for the same event type, the type may be followed by an optional namespace, such as &quot;click.foo&quot; and &quot;click.bar&quot;.</p>
+<p>If <em>listener</em> is not specified, returns the currently-assigned listener for the specified <em>type</em>, if any.</p>
+<p><a name="wiki-dispatch" href="Internals.html#wiki-dispatch">#</a> dispatch.<b>type</b>(<i>arguments…</i>)</p>
+<p>The <em>type</em> method (such as <code>dispatch.start</code> in the above example) notifies each registered listener, passing the listener the specified <em>arguments</em>. The <code>this</code> context will be used as the context of the registered listeners. For example, to invoke all registered listeners with the context <em>foo</em> and the argument <em>bar</em>, say dispatch.call( <em>foo</em>, <em>bar</em> ). Thus, you can pass whatever arguments you want to the listeners; most commonly, you might create an object that represents the event, or pass along the current datum ( <em>d</em> ) and index ( <em>i</em> ). You can also control the &quot;this&quot; context of the listeners using <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/Call.html">call</a> or <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/Apply.html">apply</a>.</p>
+<p>For example, if you wanted a native &quot;click&quot; event to your &quot;custom&quot; event, while preserving the context and arguments, you could say:</p>
+<pre><code class="lang-javascript">selection.on(&quot;click&quot;, function(d, i) {
+  dispatch.custom.apply(this, arguments);
+});</code></pre>
+
+</body>
+</html>

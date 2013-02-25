@@ -1,0 +1,44 @@
+<!-- single file version -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="css/github.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8" />
+</head>
+<body>
+<h1>Geo Streams</h1>
+<p>For fast transformations of geometry without temporary copies of geometry objects, D3 uses <strong>geometry streams</strong>. The main <a href=".html#wiki-d3_geo_stream">d3.geo.stream</a> method converts a GeoJSON input object to a stream: a series of method calls on a <em>stream listener</em>. In addition, D3 provides several stream transformations that wrap listeners and transform the geometry. For example, the <a href="Geo-Projections#stream">projection.stream</a> interface transforms spherical coordinates to Cartesian coordinates, and <a href="Geo-Paths">d3.geo.path</a> serializes geometry to either SVG or Canvas. Internally, clipping and rotating are also implemented as stream transformations.</p>
+<p><a name="wiki-d3_geo_stream" href="#wiki-d3_geo_stream">#</a> d3.geo.<b>stream</b>(<i>object</i>, <i>listener</i>)</p>
+<p>Streams the specified <a href="http://geojson.org.html">GeoJSON</a> <em>object</em> to the specified stream <em>listener</em>. (Despite the name “stream”, these method calls are currently synchronous.) While both features and geometry objects are supported as input, the stream interface only describes the geometry, and thus additional feature properties are not visible to listeners.</p>
+<h2>Stream Listeners</h2>
+<p>Stream listeners must implement several methods to traverse geometry. Listeners are inherently stateful; the meaning of a <a href=".html#wiki-point">point</a> depends on whether the point is inside of a <a href="#wiki-lineStart">line</a>, and likewise a line is distinguished from a ring by a <a href="#wiki-polygonStart">polygon</a>.</p>
+<p><a name="wiki-point" href="#wiki-point">#</a> listener.<b>point</b>(<i>x</i>, <i>y</i>[, <i>z</i>])</p>
+<p>Indicates a point with the specified coordinates <em>x</em> and <em>y</em> (and optionally <em>z</em>). The coordinate system is unspecified and implementation-dependent; for example, <a href="Geo-Projections.html#wiki-stream">projection streams</a> require spherical coordinates in degrees as input. Outside the context of a polygon or line, a point indicates a point geometry object (<a href="http://www.geojson.org/geojson-spec.html#point">Point</a> or <a href="http://www.geojson.org/geojson-spec.html#multipoint">MultiPoint</a>). Within a line or polygon ring, the point indicates a control point.</p>
+<p><a name="wiki-lineStart" href="#wiki-lineStart">#</a> listener.<b>lineStart</b>()</p>
+<p>Indicates the start of a line or ring. Within a polygon, indicates the start of a ring. The first ring of a polygon is the exterior ring, and is typically clockwise. Any subsequent rings indicate holes in the polygon, and are typically counterclockwise.</p>
+<p><a name="wiki-lineEnd" href="#wiki-lineEnd">#</a> listener.<b>lineEnd</b>()</p>
+<p>Indicates the end of a line or ring. Within a polygon, indicates the end of a ring. Unlike GeoJSON, the redundant closing coordinate of a ring is <em>not</em> indicated via <a href=".html#wiki-point">point</a>, and instead is implied via lineEnd within a polygon. Thus, the given polygon input:</p>
+<pre><code class="lang-json">{
+  &quot;type&quot;: &quot;Polygon&quot;,
+  &quot;coordinates&quot;: [
+    [0, 0], [1, 0], [1, 1], [0, 1], [0, 0](0, 0], [1, 0], [1, 1], [0, 1], [0, 0.html)
+  ]
+}</code></pre>
+<p>Will produce the following series of method calls on the listener:</p>
+<pre><code class="lang-js">listener.polygonStart();
+listener.lineStart();
+listener.point(0, 0);
+listener.point(1, 0);
+listener.point(1, 1);
+listener.point(0, 1);
+listener.lineEnd();
+listener.polygonEnd();</code></pre>
+<p><a name="wiki-polygonStart" href="#wiki-polygonStart">#</a> listener.<b>polygonStart</b>()</p>
+<p>Indicates the start of a polygon. The first line of a polygon indicates the exterior ring, and any subsequent lines indicate interior holes.</p>
+<p><a name="wiki-polygonEnd" href="#wiki-polygonEnd">#</a> listener.<b>polygonEnd</b>()</p>
+<p>Indicates the end of a polygon.</p>
+<p><a name="wiki-sphere" href="#wiki-sphere">#</a> listener.<b>sphere</b>()</p>
+<p>Indicates the sphere (the globe; the unit sphere centered at ⟨0,0,0⟩).</p>
+
+</body>
+</html>

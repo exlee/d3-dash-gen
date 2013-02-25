@@ -1,0 +1,89 @@
+<!-- single file version -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="css/github.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8" />
+</head>
+<body>
+<h1>Hierarchy Layout</h1>
+<p>The hierarchy layout is an <em>abstract</em> layout that is not used directly, but instead allows code sharing between multiple hierarchical layouts. For an implementation, see one of:</p>
+<ul>
+<li><a href="Cluster-Layout.html">Cluster</a> - cluster entities into a dendrogram.</li>
+<li><a href="Pack-Layout.html">Pack</a> - produce a hierarchical layout using recursive circle-packing.</li>
+<li><a href="Partition-Layout.html">Partition</a> - recursively partition a node tree into a sunburst or icicle.</li>
+<li><a href="Tree-Layout.html">Tree</a> - position a tree of nodes tidily.</li>
+<li><a href="Treemap-Layout.html">Treemap</a> - use recursive spatial subdivision to display a tree of nodes.</li>
+</ul>
+<p>Although not a hierarchy layout, the <a href="Bundle-Layout.html">bundle layout</a> is also designed to work in conjunction with hierarchies.</p>
+<p><a name="wiki-hierarchy" href="Hierarchy-Layout.html#wiki-hierarchy">#</a> d3.layout.<b>hierarchy</b>()</p>
+<p>Creates a new hierarchy layout with the default settings: the default sort order is by descending value; the default value accessor assumes each input data is an object with a numeric value attribute; and the default children accessor assumes each input data is an object with a children array.</p>
+<p><a name="wiki-sort" href="Hierarchy-Layout.html#wiki-sort">#</a> hierarchy.<b>sort</b>([<i>comparator</i>])</p>
+<p>If <em>comparator</em> is specified, sets the sort order of sibling nodes for the layout using the specified comparator function.  If <em>comparator</em> is not specified, returns the current group sort order, which defaults to descending order by the associated input data&#39;s numeric value attribute:</p>
+<pre><code class="lang-javascript">function comparator(a, b) {
+  return b.value - a.value;
+}</code></pre>
+<p>The comparator function is invoked for pairs of nodes, being passed the input data for each node. A null comparator disables sorting and uses tree traversal order. Comparator functions may also be implemented using <a href="Arrays.html#wiki-d3_ascending">d3.ascending</a> or <a href="Arrays#wiki-d3_descending">d3.descending</a>.</p>
+<p><a name="wiki-children" href="Hierarchy-Layout.html#wiki-children">#</a> hierarchy.<b>children</b>([<i>accessor</i>])</p>
+<p>If <em>accessor</em> is specified, sets the specified children accessor function. If <em>accessor</em> is not specified, returns the current children accessor function, which by default assumes that the input data is an object with a children array:</p>
+<pre><code class="lang-javascript">function children(d) {
+  return d.children;
+}</code></pre>
+<p>Often, it is convenient to load the node hierarchy using <a href="Requests.html#wiki-d3_json">d3.json</a>, and represent the input hierarchy as a nested <a href="http://json.org">JSON</a> object. For example:</p>
+<pre><code class="lang-javascript">{
+ &quot;name&quot;: &quot;flare&quot;,
+ &quot;children&quot;: [
+  {
+   &quot;name&quot;: &quot;analytics&quot;,
+   &quot;children&quot;: [
+    {
+     &quot;name&quot;: &quot;cluster&quot;,
+     &quot;children&quot;: [
+      {&quot;name&quot;: &quot;AgglomerativeCluster&quot;, &quot;size&quot;: 3938},
+      {&quot;name&quot;: &quot;CommunityStructure&quot;, &quot;size&quot;: 3812},
+      {&quot;name&quot;: &quot;MergeEdge&quot;, &quot;size&quot;: 743}
+     ]
+    },
+    {
+     &quot;name&quot;: &quot;graph&quot;,
+     &quot;children&quot;: [
+      {&quot;name&quot;: &quot;BetweennessCentrality&quot;, &quot;size&quot;: 3534},
+      {&quot;name&quot;: &quot;LinkDistance&quot;, &quot;size&quot;: 5731}
+     ]
+    }
+   ]
+  }
+ ]
+}</code></pre>
+<p>The children accessor is first invoked for root node in the hierarchy. If the accessor returns null, then the node is assumed to be a leaf node and the layout traversal terminates. Otherwise, the accessor should return an array of data elements representing the child nodes. The accessor is called with arguments <em>node</em> and <em>depth</em>.</p>
+<p><a name="wiki-nodes" href="Hierarchy-Layout.html#wiki-nodes">#</a> hierarchy.<b>nodes</b>(<i>root</i>)</p>
+<p>Runs the hierarchy layout, returning the array of nodes associated with the specified <em>root</em> node. The input argument to the layout is the root node of the hierarchy, and the output return value is an array representing the computed positions of all nodes. Several attributes are populated on each node:</p>
+<ul>
+<li>parent - the parent node, or null for the root.</li>
+<li>children - the array of child nodes, or null for leaf nodes.</li>
+<li>value - the node value, as returned by the value accessor.</li>
+<li>depth - the depth of the node, starting at 0 for the root.</li>
+</ul>
+<p>In addition, most hierarchy layouts also compute <em>x</em> and <em>y</em> positions for nodes; see the implementing class for details.</p>
+<p><a name="wiki-links" href="Hierarchy-Layout.html#wiki-links">#</a> hierarchy.<b>links</b>(<i>nodes</i>)</p>
+<p>Given the specified array of <em>nodes</em>, such as those returned by <a href="Hierarchy-Layout.html#wiki-nodes">nodes</a>, returns an array of objects representing the links from parent to child for each node. Leaf nodes will not have any links. Each link is an object with two attributes:</p>
+<ul>
+<li>source - the parent node (as described above).</li>
+<li>target - the child node.</li>
+</ul>
+<p>This method is useful for retrieving a set of link descriptions suitable for display, often in conjunction with the <a href="SVG-Shapes.html#wiki-diagonal">diagonal</a> shape generator. For example:</p>
+<pre><code class="lang-javascript">svg.selectAll(&quot;path&quot;)
+    .data(partition.links(nodes))
+  .enter().append(&quot;path&quot;)
+    .attr(&quot;d&quot;, d3.svg.diagonal());</code></pre>
+<p><a name="wiki-value" href="Hierarchy-Layout.html#wiki-value">#</a> hierarchy.<b>value</b>([<i>value</i>])</p>
+<p>If <em>value</em> is specified, sets the value accessor to the specified function. If <em>value</em> is not specified, returns the current value accessor. The default accessor assumes that the input data is an object with a numeric value attribute:</p>
+<pre><code class="lang-javascript">function value(d) {
+  return d.value;
+}</code></pre>
+<p>The value accessor is invoked for each input data element, and must return a number representing the numeric value of the node. For area-proportional layouts such as treemaps, this value is used to set the area of each node proportionally to the value; for other hierarchical layouts, the value has no effect on the layout.</p>
+<p><a name="wiki-revalue" href="Hierarchy-Layout.html#wiki-revalue">#</a> hierarchy.<b>revalue</b>(<i>root</i>)</p>
+<p>Re-evaluates the values of each node in the specified tree starting at <em>root</em>, without re-sorting or recomputing the child nodes. This method can be used to recompute the values of each node without making any structural changes to the hierarchy. Primarily, it exists to support <a href="Treemap-Layout.html#wiki-sticky">sticky treemaps</a>.</p>
+
+</body>
+</html>

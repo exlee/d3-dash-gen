@@ -1,0 +1,33 @@
+<!-- single file version -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="css/github.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8" />
+</head>
+<body>
+<h1>Math</h1>
+<h2>Pseudorandom Number Generation</h2>
+<p>You can use the built-in <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Math/random.html">Math.random</a> to generate uniform distributions. For example, to generate a random integer between 0 and 99 (inclusive), you can say <code>Math.floor(Math.random() * 100)</code>. </p>
+<p><a name="wiki-d3_random_normal" href="#wiki-d3_random_normal">#</a> d3.random.<b>normal</b>([<i>mean</i>, [<i>deviation</i>]])</p>
+<p>Returns a function for generating random numbers with a <a href="http://en.wikipedia.org/wiki/Normal_distribution.html">normal (Gaussian) distribution</a>. The expected value of the generated pseudorandom numbers is <em>mean</em>, with the given standard <em>deviation</em>. If <em>deviation</em> is not specified, it defaults to 1.0; if <em>mean</em> is not specified, it defaults to 0.0.</p>
+<p><a name="wiki-d3_random_logNormal" href="#wiki-d3_random_logNormal">#</a> d3.random.<b>logNormal</b>([<i>mean</i>, [<i>deviation</i>]])</p>
+<p>Returns a function for generating random numbers with a <a href="http://en.wikipedia.org/wiki/Log-normal_distribution.html">log-normal distribution</a>. The expected value of the random variable’s natural logrithm is <em>mean</em>, with the given standard <em>deviation</em>. If <em>deviation</em> is not specified, it defaults to 1.0; if <em>mean</em> is not specified, it defaults to 0.0.</p>
+<p><a name="wiki-d3_random_irwinHall" href="#wiki-d3_random_irwinHall">#</a> d3.random.<b>irwinHall</b>(<i>count</i>)</p>
+<p>Returns a function for generating random numbers with an <a href="http://en.wikipedia.org/wiki/Irwin–Hall_distribution.html">Irwin–Hall distribution</a>. The number of independent variables is specified by <em>count</em>.</p>
+<h2>2D Transforms</h2>
+<p><a name="wiki-d3_transform" href="#wiki-d3_transform">#</a> d3.<b>transform</b>(<i>string</i>)</p>
+<p>Parses the given 2D affine transform string, as defined by SVG&#39;s <a href="http://www.w3.org/TR/SVG/coords.html.html#TransformAttribute">transform attribute</a>. The transform is then decomposed to a standard representation of translate, rotate, x-skew and scale. This behavior is standardized by CSS: see <a href="http://www.w3.org/TR/css3-2d-transforms/#matrix-decomposition">matrix decomposition for animation</a>.</p>
+<p><a name="wiki-transform_rotate" href="#wiki-transform_rotate">#</a> transform.<b>rotate</b></p>
+<p>Returns the rotation angle θ of this transform, in degrees.</p>
+<p><a name="wiki-transform_translate" href="#wiki-transform_translate">#</a> transform.<b>translate</b></p>
+<p>Returns the [dx, dy] translation of this transform, as a two-element array in local coordinates (typically pixels).</p>
+<p><a name="wiki-transform_skew" href="#wiki-transform_skew">#</a> transform.<b>skew</b></p>
+<p>Returns the <em>x</em>-skew φ of this transform, in degrees.</p>
+<p><a name="wiki-transform_scale" href="#wiki-transform_scale">#</a> transform.<b>scale</b></p>
+<p>Returns the [kx, ky] scale of this transform, as a two-element array.</p>
+<p><a name="wiki-transform_toString" href="#wiki-transform_toString">#</a> transform.<b>toString</b></p>
+<p>Returns a string representation of this transform, in the form &quot;translate(dx,dy)rotate(θ)skewX(φ)scale(kx,ky)&quot;.</p>
+
+</body>
+</html>

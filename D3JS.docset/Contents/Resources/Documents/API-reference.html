@@ -1,0 +1,684 @@
+<!-- single file version -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="css/github.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8" />
+</head>
+<body>
+<h1>API Reference</h1>
+<p>Everything in D3 is scoped under the <code>d3</code> namespace. D3 uses <a href="http://semver.org.html">semantic versioning</a>. You can find the current version of D3 as <code>d3.version</code>.</p>
+<h2><a href="Core.html">d3 (core)</a></h2>
+<h3><a href="Selections.html">Selections</a></h3>
+<ul>
+<li><a href="Selections.html#wiki-d3_select">d3.select</a> - select an element from the current document.</li>
+<li><a href="Selections.html#wiki-d3_selectAll">d3.selectAll</a> - select multiple elements from the current document.</li>
+<li><a href="Selections.html#wiki-attr">selection.attr</a> - get or set attribute values.</li>
+<li><a href="Selections.html#wiki-classed">selection.classed</a> - add or remove CSS classes.</li>
+<li><a href="Selections.html#wiki-style">selection.style</a> - get or set style properties.</li>
+<li><a href="Selections.html#wiki-property">selection.property</a> - get or set raw properties.</li>
+<li><a href="Selections.html#wiki-text">selection.text</a> - get or set text content.</li>
+<li><a href="Selections.html#wiki-html">selection.html</a> - get or set inner HTML content.</li>
+<li><a href="Selections.html#wiki-append">selection.append</a> - create and append new elements.</li>
+<li><a href="Selections.html#wiki-insert">selection.insert</a> - create and insert new elements before existing elements.</li>
+<li><a href="Selections.html#wiki-remove">selection.remove</a> - remove elements from the document.</li>
+<li><a href="Selections.html#wiki-data">selection.data</a> - get or set data for a group of elements, while computing a relational join.</li>
+<li><a href="Selections.html#wiki-enter">selection.enter</a> - returns placeholders for missing elements.</li>
+<li><a href="Selections.html#wiki-exit">selection.exit</a> - returns elements that are no longer needed.</li>
+<li><a href="Selections.html#wiki-datum">selection.datum</a> - get or set data for individual elements, without computing a join.</li>
+<li><a href="Selections.html#wiki-filter">selection.filter</a> - filter a selection based on data.</li>
+<li><a href="Selections.html#wiki-sort">selection.sort</a> - sort elements in the document based on data.</li>
+<li><a href="Selections.html#wiki-order">selection.order</a> - reorders elements in the document to match the selection.</li>
+<li><a href="Selections.html#wiki-on">selection.on</a> - add or remove event listeners for interaction.</li>
+<li><a href="Selections.html#wiki-transition">selection.transition</a> - start a transition on the selected elements.</li>
+<li><a href="Selections.html#wiki-each">selection.each</a> - call a function for each selected element.</li>
+<li><a href="Selections.html#wiki-call">selection.call</a> - call a function passing in the current selection.</li>
+<li><a href="Selections.html#wiki-empty">selection.empty</a> - returns true if the selection is empty.</li>
+<li><a href="Selections.html#wiki-node">selection.node</a> - access the first node in a selection.</li>
+<li><a href="Selections.html#wiki-select">selection.select</a> - subselect a descendant element for each selected element.</li>
+<li><a href="Selections.html#wiki-selectAll">selection.selectAll</a> - subselect multiple descendants for each selected element.</li>
+<li><a href="Selections.html#wiki-d3_selection">d3.selection</a> - augment the selection prototype, or test instance types.</li>
+<li><a href="Selections.html#wiki-d3_event">d3.event</a> - access the current user event for interaction.</li>
+<li><a href="Selections.html#wiki-d3_mouse">d3.mouse</a> - gets the mouse position relative to a specified container.</li>
+<li><a href="Selections.html#wiki-d3_touches">d3.touches</a> - gets the touch positions relative to a specified container.</li>
+</ul>
+<h3><a href="Transitions.html">Transitions</a></h3>
+<ul>
+<li><a href="Transitions.html#wiki-d3_transition">d3.transition</a> - start an animated transition.</li>
+<li><a href="Transitions.html#wiki-delay">transition.delay</a> - specify per-element delay in milliseconds.</li>
+<li><a href="Transitions.html#wiki-duration">transition.duration</a> - specify per-element duration in milliseconds.</li>
+<li><a href="Transitions.html#wiki-ease">transition.ease</a> - specify transition easing function.</li>
+<li><a href="Transitions.html#wiki-attr">transition.attr</a> - smoothly transition to the new attribute value.</li>
+<li><a href="Transitions.html#wiki-attrTween">transition.attrTween</a> - smoothly transition between two attribute values.</li>
+<li><a href="Transitions.html#wiki-style">transition.style</a> - smoothly transition to the new style property value.</li>
+<li><a href="Transitions.html#wiki-styleTween">transition.styleTween</a> - smoothly transition between two style property values.</li>
+<li><a href="Transitions.html#wiki-text">transition.text</a> - set the text content when the transition starts.</li>
+<li><a href="Transitions.html#wiki-tween">transition.tween</a> - specify a custom tween operator to run as part of the transition.</li>
+<li><a href="Transitions.html#wiki-select">transition.select</a> - start a transition on a descendant element for each selected element.</li>
+<li><a href="Transitions.html#wiki-selectAll">transition.selectAll</a> - start a transition on multiple descendants for each selected element.</li>
+<li><a href="Transitions.html#wiki-filter">transition.filter</a> - filter a transition based on data.</li>
+<li><a href="Transitions.html#wiki-transition">transition.transition</a> - when this transition ends, start another one on the same elements.</li>
+<li><a href="Transitions.html#wiki-remove">transition.remove</a> - remove selected elements at the end of a transition.</li>
+<li><a href="Transitions.html#wiki-each">transition.each</a> - add a listener for transition end events.</li>
+<li><a href="Transitions.html#wiki-call">transition.call</a> - call a function passing in the current transition.</li>
+<li><a href="Transitions.html#wiki-d3_ease">d3.ease</a> - customize transition timing.</li>
+<li><a href="Transitions.html#wiki-_ease">ease</a> - a parametric easing function.</li>
+<li><a href="Transitions.html#wiki-d3_timer">d3.timer</a> - start a custom animation timer.</li>
+<li><a href="Transitions.html#wiki-d3_timer_flush">d3.timer.flush</a> - immediately execute any zero-delay timers.</li>
+<li><a href="Transitions.html#wiki-d3_interpolate">d3.interpolate</a> - interpolate two values.</li>
+<li><a href="Transitions.html#wiki-_interpolate">interpolate</a> - a parametric interpolation function.</li>
+<li><a href="Transitions.html#wiki-d3_interpolateNumber">d3.interpolateNumber</a> - interpolate two numbers.</li>
+<li><a href="Transitions.html#wiki-d3_interpolateRound">d3.interpolateRound</a> - interpolate two integers.</li>
+<li><a href="Transitions.html#wiki-d3_interpolateString">d3.interpolateString</a> - interpolate two strings.</li>
+<li><a href="Transitions.html#wiki-d3_interpolateRgb">d3.interpolateRgb</a> - interpolate two RGB colors.</li>
+<li><a href="Transitions.html#wiki-d3_interpolateHsl">d3.interpolateHsl</a> - interpolate two HSL colors.</li>
+<li><a href="Transitions.html#wiki-d3_interpolateLab">d3.interpolateLab</a> - interpolate two L*a*b* colors.</li>
+<li><a href="Transitions.html#wiki-d3_interpolateHcl">d3.interpolateHcl</a> - interpolate two HCL colors.</li>
+<li><a href="Transitions.html#wiki-d3_interpolateArray">d3.interpolateArray</a> - interpolate two arrays of values.</li>
+<li><a href="Transitions.html#wiki-d3_interpolateObject">d3.interpolateObject</a> - interpolate two arbitrary objects.</li>
+<li><a href="Transitions.html#wiki-d3_interpolateTransform">d3.interpolateTransform</a> - interpolate two 2D matrix transforms.</li>
+<li><a href="Transitions.html#wiki-d3_interpolators">d3.interpolators</a> - register a custom interpolator.</li>
+</ul>
+<h3><a href="Arrays.html">Working with Arrays</a></h3>
+<ul>
+<li><a href="Arrays.html#wiki-d3_ascending">d3.ascending</a> - compare two values for sorting.</li>
+<li><a href="Arrays.html#wiki-d3_descending">d3.descending</a> - compare two values for sorting.</li>
+<li><a href="Arrays.html#wiki-d3_min">d3.min</a> - find the minimum value in an array.</li>
+<li><a href="Arrays.html#wiki-d3_max">d3.max</a> - find the maximum value in an array.</li>
+<li><a href="Arrays.html#wiki-d3_extent">d3.extent</a> - find the minimum and maximum value in an array.</li>
+<li><a href="Arrays.html#wiki-d3_sum">d3.sum</a> - compute the sum of an array of numbers.</li>
+<li><a href="Arrays.html#wiki-d3_mean">d3.mean</a> - compute the arithmetic mean of an array of numbers.</li>
+<li><a href="Arrays.html#wiki-d3_median">d3.median</a> - compute the median of an array of numbers (the 0.5-quantile).</li>
+<li><a href="Arrays.html#wiki-d3_quantile">d3.quantile</a> - compute a quantile for a sorted array of numbers.</li>
+<li><a href="Arrays.html#wiki-d3_bisect">d3.bisect</a> - search for a value in a sorted array.</li>
+<li><a href="Arrays.html#wiki-d3_bisectRight">d3.bisectRight</a> - search for a value in a sorted array.</li>
+<li><a href="Arrays.html#wiki-d3_bisectLeft">d3.bisectLeft</a> - search for a value in a sorted array.</li>
+<li><a href="Arrays.html#wiki-d3_bisector">d3.bisector</a> - bisect using an accessor.</li>
+<li><a href="Arrays.html#wiki-d3_shuffle">d3.shuffle</a> - randomize the order of an array.</li>
+<li><a href="Arrays.html#wiki-d3_permute">d3.permute</a> - reorder an array of elements according to an array of indexes.</li>
+<li><a href="Arrays.html#wiki-d3_zip">d3.zip</a> - transpose a variable number of arrays.</li>
+<li><a href="Arrays.html#wiki-d3_transpose">d3.transpose</a> - transpose an array of arrays.</li>
+<li><a href="Arrays.html#wiki-d3_keys">d3.keys</a> - list the keys of an associative array.</li>
+<li><a href="Arrays.html#wiki-d3_values">d3.values</a> - list the values of an associated array.</li>
+<li><a href="Arrays.html#wiki-d3_entries">d3.entries</a> - list the key-value entries of an associative array.</li>
+<li><a href="Arrays.html#wiki-d3_merge">d3.merge</a> - merge multiple arrays into one array.</li>
+<li><a href="Arrays.html#wiki-d3_range">d3.range</a> - generate a range of numeric values.</li>
+<li><a href="Arrays.html#wiki-d3_nest">d3.nest</a> - group array elements hierarchically.</li>
+<li><a href="Arrays.html#wiki-nest_key">nest.key</a> - add a level to the nest hierarchy.</li>
+<li><a href="Arrays.html#wiki-nest_sortKeys">nest.sortKeys</a> - sort the current nest level by key.</li>
+<li><a href="Arrays.html#wiki-nest_sortValues">nest.sortValues</a> - sort the leaf nest level by value.</li>
+<li><a href="Arrays.html#wiki-nest_rollup">nest.rollup</a> - specify a rollup function for leaf values.</li>
+<li><a href="Arrays.html#wiki-nest_map">nest.map</a> - evaluate the nest operator, returning an associative array.</li>
+<li><a href="Arrays.html#wiki-nest_entries">nest.entries</a> - evaluate the nest operator, returning an array of key-values tuples.</li>
+<li><a href="Arrays.html#wiki-d3_map">d3.map</a> - a shim for ES6 maps, since objects are not hashes!</li>
+<li><a href="Arrays.html#wiki-map_has">map.has</a> - returns true if the map contains the specified key.</li>
+<li><a href="Arrays.html#wiki-map_get">map.get</a> - returns the value for the specified key.</li>
+<li><a href="Arrays.html#wiki-map_set">map.set</a> - sets the value for the specified key.</li>
+<li><a href="Arrays.html#wiki-map_remove">map.remove</a> - removes the entry for specified key.</li>
+<li><a href="Arrays.html#wiki-map_keys">map.keys</a> - returns the map’s array of keys.</li>
+<li><a href="Arrays.html#wiki-map_values">map.values</a> - returns the map’s array of values.</li>
+<li><a href="Arrays.html#wiki-map_entries">map.entries</a> - returns the map’s array of entries (key-values objects).</li>
+<li><a href="Arrays.html#wiki-map_forEach">map.forEach</a> - calls the specified function for each entry in the map.</li>
+</ul>
+<h3><a href="Math.html">Math</a></h3>
+<ul>
+<li><a href="Math.html#wiki-random_normal">d3.random.normal</a> - generate a random number with a normal distribution.</li>
+<li><a href="Math.html#wiki-random_logNormal">d3.random.logNormal</a> - generate a random number with a log-normal distribution.</li>
+<li><a href="Math.html#wiki-random_irwinHall">d3.random.irwinHall</a> - generate a random number with an Irwin–Hall distribution.</li>
+<li><a href="Math.html#wiki-transform">d3.transform</a> - compute the standard form of a 2D matrix transform.</li>
+</ul>
+<h3><a href="Requests.html">Loading External Resources</a></h3>
+<ul>
+<li><a href="Requests.html#wiki-d3_xhr">d3.xhr</a> - request a resource using XMLHttpRequest.</li>
+<li><a href="Requests.html#wiki-header">xhr.header</a> - set a request header.</li>
+<li><a href="Requests.html#wiki-mimeType">xhr.mimeType</a> - set the Accept request header and override the response MIME type.</li>
+<li><a href="Requests.html#wiki-response">xhr.response</a> - set a response mapping function.</li>
+<li><a href="Requests.html#wiki-get">xhr.get</a> - issue a GET request.</li>
+<li><a href="Requests.html#wiki-post">xhr.post</a> - issue a POST request.</li>
+<li><a href="Requests.html#wiki-send">xhr.send</a> - issue a request with the specified method and data.</li>
+<li><a href="Requests.html#wiki-abort">xhr.abort</a> - abort an outstanding request.</li>
+<li><a href="Requests.html#wiki-on">xhr.on</a> - add an event listener for &quot;progress&quot;, &quot;load&quot; or &quot;error&quot; events.</li>
+<li><a href="Requests.html#wiki-d3_text">d3.text</a> - request a text file.</li>
+<li><a href="Requests.html#wiki-d3_json">d3.json</a> - request a JSON blob.</li>
+<li><a href="Requests.html#wiki-d3_html">d3.html</a> - request an HTML document fragment.</li>
+<li><a href="Requests.html#wiki-d3_xml">d3.xml</a> - request an XML document fragment.</li>
+<li><a href="CSV.html">d3.csv</a> - request a comma-separated values (CSV) file.</li>
+<li><a href="CSV.html#wiki-tsv">d3.tsv</a> - request a tab-separated values (TSV) file.</li>
+</ul>
+<h3><a href="Formatting.html">String Formatting</a></h3>
+<ul>
+<li><a href="Formatting.html#wiki-d3_format">d3.format</a> - format a number as a string.</li>
+<li><a href="Formatting.html#wiki-d3_formatPrefix">d3.formatPrefix</a> - returns the [SI prefix] for the specified value and precision.</li>
+<li><a href="Formatting.html#wiki-d3_requote">d3.requote</a> - quote a string for use in a regular expression.</li>
+<li><a href="Formatting.html#wiki-d3_round">d3.round</a> - rounds a value to some digits after the decimal point.</li>
+</ul>
+<h3><a href="CSV.html">CSV Formatting (d3.csv)</a></h3>
+<ul>
+<li><a href="CSV.html#wiki-csv">d3.csv</a> - request a comma-separated values (CSV) file.</li>
+<li><a href="CSV.html#wiki-parse">d3.csv.parse</a> - parse a CSV string into objects using the header row.</li>
+<li><a href="CSV.html#wiki-parseRows">d3.csv.parseRows</a> - parse a CSV string into tuples, ignoring the header row.</li>
+<li><a href="CSV.html#wiki-format">d3.csv.format</a> - format an array of tuples into a CSV string.</li>
+<li><a href="CSV.html#wiki-tsv">d3.tsv</a> - request a tab-separated values (TSV) file.</li>
+<li><a href="CSV.html#wiki-tsv_parse">d3.tsv.parse</a> - parse a TSV string into objects using the header row.</li>
+<li><a href="CSV.html#wiki-tsv_parseRows">d3.tsv.parseRows</a> - parse a TSV string into tuples, ignoring the header row.</li>
+<li><a href="CSV.html#wiki-tsv_format">d3.tsv.format</a> - format an array of tuples into a TSV string.</li>
+</ul>
+<h3><a href="Colors.html">Colors</a></h3>
+<ul>
+<li><a href="Colors.html#wiki-d3_rgb">d3.rgb</a> - specify a color in RGB space.</li>
+<li><a href="Colors.html#wiki-rgb_brighter">rgb.brighter</a> - increase RGB channels by some exponential factor (gamma).</li>
+<li><a href="Colors.html#wiki-rgb_darker">rgb.darker</a> - decrease RGB channels by some exponential factor (gamma).</li>
+<li><a href="Colors.html#wiki-rgb_hsl">rgb.hsl</a> - convert from RGB to HSL.</li>
+<li><a href="Colors.html#wiki-rgb_toString">rgb.toString</a> - convert an RGB color to a string.</li>
+<li><a href="Colors.html#wiki-d3_hsl">d3.hsl</a> - specify a color in HSL space.</li>
+<li><a href="Colors.html#wiki-hsl_brighter">hsl.brighter</a> - increase lightness by some exponential factor (gamma).</li>
+<li><a href="Colors.html#wiki-hsl_darker">hsl.darker</a> - decrease lightness by some exponential factor (gamma).</li>
+<li><a href="Colors.html#wiki-hsl_rgb">hsl.rgb</a> - convert from HSL to RGB.</li>
+<li><a href="Colors.html#wiki-hsl_toString">hsl.toString</a> - convert an HSL color to a string.</li>
+<li><a href="Colors.html#wiki-d3_lab">d3.lab</a> - specify a color in L*a*b* space.</li>
+<li><a href="Colors.html#wiki-lab_brighter">lab.brighter</a> - increase lightness by some exponential factor (gamma).</li>
+<li><a href="Colors.html#wiki-lab_darker">lab.darker</a> - decrease lightness by some exponential factor (gamma).</li>
+<li><a href="Colors.html#wiki-lab_rgb">lab.rgb</a> - convert from L*a*b* to RGB.</li>
+<li><a href="Colors.html#wiki-lab_toString">lab.toString</a> - convert a L*a*b* color to a string.</li>
+<li><a href="Colors.html#wiki-d3_hcl">d3.hcl</a> - specify a color in HCL space.</li>
+<li><a href="Colors.html#wiki-hcl_brighter">hcl.brighter</a> - increase lightness by some exponential factor (gamma).</li>
+<li><a href="Colors.html#wiki-hcl_darker">hcl.darker</a> - decrease lightness by some exponential factor (gamma).</li>
+<li><a href="Colors.html#wiki-hcl_rgb">hcl.rgb</a> - convert from HCL to RGB.</li>
+<li><a href="Colors.html#wiki-hcl_toString">hcl.toString</a> - convert an HCL color to a string.</li>
+</ul>
+<h3><a href="Namespaces.html">Namespaces</a></h3>
+<ul>
+<li><a href="Namespaces.html#wiki-prefix">d3.ns.prefix</a> - access or extend known XML namespaces.</li>
+<li><a href="Namespaces.html#wiki-qualify">d3.ns.qualify</a> - qualify a prefixed name, such as &quot;xlink:href&quot;.</li>
+</ul>
+<h3><a href="Internals.html">Internals</a></h3>
+<ul>
+<li><a href="Internals.html#wiki-functor">d3.functor</a> - create a function that returns a constant.</li>
+<li><a href="Internals.html#wiki-rebind">d3.rebind</a> - rebind an inherited getter/setter method to a subclass.</li>
+<li><a href="Internals.html#wiki-d3_dispatch">d3.dispatch</a> - create custom event dispatchers.</li>
+<li><a href="Internals.html#wiki-dispatch_on">dispatch.on</a> - register an event listener.</li>
+<li><a href="Internals.html#wiki-_dispatch">dispatch</a> - dispatch an event to registered listeners.</li>
+</ul>
+<h2><a href="Scales.html">d3.scale (Scales)</a></h2>
+<h3><a href="Quantitative-Scales.html#wiki-quantitative">Quantitative</a></h3>
+<ul>
+<li><a href="Quantitative-Scales.html#wiki-linear">d3.scale.linear</a> - construct a linear quantitative scale.</li>
+<li><a href="Quantitative-Scales.html#wiki-_linear">linear</a> - get the range value corresponding to a given domain value.</li>
+<li><a href="Quantitative-Scales.html#wiki-linear_invert">linear.invert</a> - get the domain value corresponding to a given range value.</li>
+<li><a href="Quantitative-Scales.html#wiki-linear_domain">linear.domain</a> - get or set the scale&#39;s input domain.</li>
+<li><a href="Quantitative-Scales.html#wiki-linear_range">linear.range</a> - get or set the scale&#39;s output range.</li>
+<li><a href="Quantitative-Scales.html#wiki-linear_rangeRound">linear.rangeRound</a> - set the scale&#39;s output range, and enable rounding.</li>
+<li><a href="Quantitative-Scales.html#wiki-linear_interpolate">linear.interpolate</a> - get or set the scale&#39;s output interpolator.</li>
+<li><a href="Quantitative-Scales.html#wiki-linear_clamp">linear.clamp</a> - enable or disable clamping of the output range.</li>
+<li><a href="Quantitative-Scales.html#wiki-linear_nice">linear.nice</a> - extend the scale domain to nice round numbers.</li>
+<li><a href="Quantitative-Scales.html#wiki-linear_ticks">linear.ticks</a> - get representative values from the input domain.</li>
+<li><a href="Quantitative-Scales.html#wiki-linear_tickFormat">linear.tickFormat</a> - get a formatter for displaying tick values.</li>
+<li><a href="Quantitative-Scales.html#wiki-linear_copy">linear.copy</a> - create a new scale from an existing scale.</li>
+<li><a href="Quantitative-Scales.html#wiki-sqrt">d3.scale.sqrt</a> - construct a quantitative scale with a square root transform.</li>
+<li><a href="Quantitative-Scales.html#wiki-pow">d3.scale.pow</a> - construct a quantitative scale with an exponential transform.</li>
+<li><a href="Quantitative-Scales.html#wiki-_pow">pow</a> - get the range value corresponding to a given domain value.</li>
+<li><a href="Quantitative-Scales.html#wiki-pow_invert">pow.invert</a> - get the domain value corresponding to a given range value.</li>
+<li><a href="Quantitative-Scales.html#wiki-pow_domain">pow.domain</a> - get or set the scale&#39;s input domain.</li>
+<li><a href="Quantitative-Scales.html#wiki-pow_range">pow.range</a> - get or set the scale&#39;s output range.</li>
+<li><a href="Quantitative-Scales.html#wiki-pow_rangeRound">pow.rangeRound</a> - set the scale&#39;s output range, and enable rounding.</li>
+<li><a href="Quantitative-Scales.html#wiki-pow_interpolate">pow.interpolate</a> - get or set the scale&#39;s output interpolator.</li>
+<li><a href="Quantitative-Scales.html#wiki-pow_clamp">pow.clamp</a> - enable or disable clamping of the output range.</li>
+<li><a href="Quantitative-Scales.html#wiki-pow_nice">pow.nice</a> - extend the scale domain to nice round numbers.</li>
+<li><a href="Quantitative-Scales.html#wiki-pow_ticks">pow.ticks</a> - get representative values from the input domain.</li>
+<li><a href="Quantitative-Scales.html#wiki-pow_tickFormat">pow.tickFormat</a> - get a formatter for displaying tick values.</li>
+<li><a href="Quantitative-Scales.html#wiki-pow_exponent">pow.exponent</a> - get or set the exponent power.</li>
+<li><a href="Quantitative-Scales.html#wiki-pow_copy">pow.copy</a> - create a new scale from an existing scale.</li>
+<li><a href="Quantitative-Scales.html#wiki-log">d3.scale.log</a> - construct a quantitative scale with an logarithmic transform.</li>
+<li><a href="Quantitative-Scales.html#wiki-_log">log</a> - get the range value corresponding to a given domain value.</li>
+<li><a href="Quantitative-Scales.html#wiki-log_invert">log.invert</a> - get the domain value corresponding to a given range value.</li>
+<li><a href="Quantitative-Scales.html#wiki-log_domain">log.domain</a> - get or set the scale&#39;s input domain.</li>
+<li><a href="Quantitative-Scales.html#wiki-log_range">log.range</a> - get or set the scale&#39;s output range.</li>
+<li><a href="Quantitative-Scales.html#wiki-log_rangeRound">log.rangeRound</a> - set the scale&#39;s output range, and enable rounding.</li>
+<li><a href="Quantitative-Scales.html#wiki-log_interpolate">log.interpolate</a> - get or set the scale&#39;s output interpolator.</li>
+<li><a href="Quantitative-Scales.html#wiki-log_clamp">log.clamp</a> - enable or disable clamping of the output range.</li>
+<li><a href="Quantitative-Scales.html#wiki-log_nice">log.nice</a> - extend the scale domain to nice powers of ten.</li>
+<li><a href="Quantitative-Scales.html#wiki-log_ticks">log.ticks</a> - get representative values from the input domain.</li>
+<li><a href="Quantitative-Scales.html#wiki-log_tickFormat">log.tickFormat</a> - get a formatter for displaying tick values.</li>
+<li><a href="Quantitative-Scales.html#wiki-log_copy">log.copy</a> - create a new scale from an existing scale.</li>
+<li><a href="Quantitative-Scales.html#wiki-quantize">d3.scale.quantize</a> - construct a linear quantitative scale with a discrete output range.</li>
+<li><a href="Quantitative-Scales.html#wiki-_quantize">quantize</a> - get the range value corresponding to a given domain value.</li>
+<li><a href="Quantitative-Scales.html#wiki-quantize_domain">quantize.domain</a> - get or set the scale&#39;s input domain.</li>
+<li><a href="Quantitative-Scales.html#wiki-quantize_range">quantize.range</a> - get or set the scale&#39;s output range (as discrete values).</li>
+<li><a href="Quantitative-Scales.html#wiki-quantize_copy">quantize.copy</a> - create a new scale from an existing scale.</li>
+<li><a href="Quantitative-Scales.html#wiki-threshold">d3.scale.threshold</a> - construct a threshold scale with a discrete output range.</li>
+<li><a href="Quantitative-Scales.html#wiki-_threshold">threshold</a> - get the range value corresponding to a given domain value.</li>
+<li><a href="Quantitative-Scales.html#wiki-threshold_domain">threshold.domain</a> - get or set the scale&#39;s input domain.</li>
+<li><a href="Quantitative-Scales.html#wiki-threshold_range">threshold.range</a> - get or set the scale&#39;s output range (as discrete values).</li>
+<li><a href="Quantitative-Scales.html#wiki-threshold_copy">threshold.copy</a> - create a new scale from an existing scale.</li>
+<li><a href="Quantitative-Scales.html#wiki-quantile">d3.scale.quantile</a> - construct a quantitative scale mapping to quantiles.</li>
+<li><a href="Quantitative-Scales.html#wiki-_quantile">quantile</a> - get the range value corresponding to a given domain value.</li>
+<li><a href="Quantitative-Scales.html#wiki-quantile_domain">quantile.domain</a> - get or set the scale&#39;s input domain (as discrete values).</li>
+<li><a href="Quantitative-Scales.html#wiki-quantile_range">quantile.range</a> - get or set the scale&#39;s output range (as discrete values).</li>
+<li><a href="Quantitative-Scales.html#wiki-quantile_quantiles">quantile.quantiles</a> - get the scale&#39;s quantile bin thresholds.</li>
+<li><a href="Quantitative-Scales.html#wiki-quantile_copy">quantile.copy</a> - create a new scale from an existing scale.</li>
+<li><a href="Quantitative-Scales.html#wiki-identity">d3.scale.identity</a> - construct a linear identity scale.</li>
+<li><a href="Quantitative-Scales.html#wiki-_identity">identity</a> - the identity function.</li>
+<li><a href="Quantitative-Scales.html#wiki-_identity">identity.invert</a> - equivalent to identity; the identity function.</li>
+<li><a href="Quantitative-Scales.html#wiki-identity_domain">identity.domain</a> - get or set the scale&#39;s domain and range.</li>
+<li><a href="Quantitative-Scales.html#wiki-identity_domain">identity.range</a> - equivalent to identity.domain.</li>
+<li><a href="Quantitative-Scales.html#wiki-identity_ticks">identity.ticks</a> - get representative values from the domain.</li>
+<li><a href="Quantitative-Scales.html#wiki-identity_tickFormat">identity.tickFormat</a> - get a formatter for displaying tick values.</li>
+<li><a href="Quantitative-Scales.html#wiki-identity_copy">identity.copy</a> - create a new scale from an existing scale.</li>
+</ul>
+<h3><a href="Ordinal-Scales.html#wiki-ordinal">Ordinal</a></h3>
+<ul>
+<li><a href="Ordinal-Scales.html#wiki-ordinal">d3.scale.ordinal</a> - construct an ordinal scale.</li>
+<li><a href="Ordinal-Scales.html#wiki-_ordinal">ordinal</a> - get the range value corresponding to a given domain value.</li>
+<li><a href="Ordinal-Scales.html#wiki-ordinal_domain">ordinal.domain</a> - get or set the scale&#39;s input domain.</li>
+<li><a href="Ordinal-Scales.html#wiki-ordinal_range">ordinal.range</a> - get or set the scale&#39;s output range.</li>
+<li><a href="Ordinal-Scales.html#wiki-ordinal_rangePoints">ordinal.rangePoints</a> - divide a continuous output range for discrete points.</li>
+<li><a href="Ordinal-Scales.html#wiki-ordinal_rangeBands">ordinal.rangeBands</a> - divide a continuous output range for discrete bands.</li>
+<li><a href="Ordinal-Scales.html#wiki-ordinal_rangeRoundBands">ordinal.rangeRoundBands</a> - divide a continuous output range for discrete bands.</li>
+<li><a href="Ordinal-Scales.html#wiki-ordinal_rangeBand">ordinal.rangeBand</a> - get the discrete range band width.</li>
+<li><a href="Ordinal-Scales.html#wiki-ordinal_rangeExtent">ordinal.rangeExtent</a> - get the minimum and maximum values of the output range.</li>
+<li><a href="Ordinal-Scales.html#wiki-ordinal_copy">ordinal.copy</a> - create a new scale from an existing scale.</li>
+<li><a href="Ordinal-Scales.html#wiki-category10">d3.scale.category10</a> - construct an ordinal scale with ten categorical colors.</li>
+<li><a href="Ordinal-Scales.html#wiki-category20">d3.scale.category20</a> - construct an ordinal scale with twenty categorical colors.</li>
+<li><a href="Ordinal-Scales.html#wiki-category20b">d3.scale.category20b</a> - construct an ordinal scale with twenty categorical colors.</li>
+<li><a href="Ordinal-Scales.html#wiki-category20c">d3.scale.category20c</a> - construct an ordinal scale with twenty categorical colors.</li>
+</ul>
+<h2><a href="SVG.html">d3.svg (SVG)</a></h2>
+<h3><a href="SVG-Shapes.html">Shapes</a></h3>
+<ul>
+<li><a href="SVG-Shapes.html#wiki-line">d3.svg.line</a> - create a new line generator.</li>
+<li><a href="SVG-Shapes.html#wiki-_line">line</a> - generate a piecewise linear curve, as in a line chart.</li>
+<li><a href="SVG-Shapes.html#wiki-line_x">line.x</a> - get or set the <em>x</em>-coordinate accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-line_y">line.y</a> - get or set the <em>y</em>-coordinate accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-line_interpolate">line.interpolate</a> - get or set the interpolation mode.</li>
+<li><a href="SVG-Shapes.html#wiki-line_tension">line.tension</a> - get or set the cardinal spline tension.</li>
+<li><a href="SVG-Shapes.html#wiki-line_defined">line.defined</a> - control whether the line is defined at a given point.</li>
+<li><a href="SVG-Shapes.html#wiki-line_radial">d3.svg.line.radial</a> - create a new radial line generator.</li>
+<li><a href="SVG-Shapes.html#wiki-_line_radial">line</a> - generate a piecewise linear curve, as in a polar line chart.</li>
+<li><a href="SVG-Shapes.html#wiki-line_radial_radius">line.radius</a> - get or set the <em>radius</em> accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-line_radial_angle">line.angle</a> - get or set the <em>angle</em> accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-line_radial_defined">line.defined</a> - control whether the line is defined at a given point.</li>
+<li><a href="SVG-Shapes.html#wiki-area">d3.svg.area</a> - create a new area generator.</li>
+<li><a href="SVG-Shapes.html#wiki-_area">area</a> - generate a piecewise linear area, as in an area chart.</li>
+<li><a href="SVG-Shapes.html#wiki-area_x">area.x</a> - get or set the <em>x</em>-coordinate accessors.</li>
+<li><a href="SVG-Shapes.html#wiki-area_x0">area.x0</a> - get or set the <em>x0</em>-coordinate (baseline) accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-area_x1">area.x1</a> - get or set the <em>x1</em>-coordinate (topline) accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-area_y">area.y</a> - get or set the <em>y</em>-coordinate accessors.</li>
+<li><a href="SVG-Shapes.html#wiki-area_y0">area.y0</a> - get or set the <em>y0</em>-coordinate (baseline) accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-area_y1">area.y1</a> - get or set the <em>y1</em>-coordinate (topline) accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-area_interpolate">area.interpolate</a> - get or set the interpolation mode.</li>
+<li><a href="SVG-Shapes.html#wiki-area_tension">area.tension</a> - get or set the cardinal spline tension.</li>
+<li><a href="SVG-Shapes.html#wiki-area_defined">area.defined</a> - control whether the area is defined at a given point.</li>
+<li><a href="SVG-Shapes.html#wiki-area_radial">d3.svg.area.radial</a> - create a new area generator.</li>
+<li><a href="SVG-Shapes.html#wiki-_area_radial">area</a> - generate a piecewise linear area, as in a polar area chart.</li>
+<li><a href="SVG-Shapes.html#wiki-area_radial_radius">area.radius</a> - get or set the <em>radius</em> accessors.</li>
+<li><a href="SVG-Shapes.html#wiki-area_radial_innerRadius">area.innerRadius</a> - get or set the inner <em>radius</em> (baseline) accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-area_radial_outerRadius">area.outerRadius</a> - get or set the outer <em>radius</em> (topline) accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-area_radial_angle">area.angle</a> - get or set the <em>angle</em> accessors.</li>
+<li><a href="SVG-Shapes.html#wiki-area_radial_startAngle">area.startAngle</a> - get or set the <em>angle</em> (baseline) accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-area_radial_endAngle">area.endAngle</a> - get or set the <em>angle</em> (topline) accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-area_radial_defined">area.defined</a> - control whether the area is defined at a given point.</li>
+<li><a href="SVG-Shapes.html#wiki-arc">d3.svg.arc</a> - create a new arc generator.</li>
+<li><a href="SVG-Shapes.html#wiki-_arc">arc</a> - generate a solid arc, as in a pie or donut chart.</li>
+<li><a href="SVG-Shapes.html#wiki-arc_innerRadius">arc.innerRadius</a> - get or set the inner radius accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-arc_outerRadius">arc.outerRadius</a> - get or set the outer radius accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-arc_startAngle">arc.startAngle</a> - get or set the start angle accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-arc_endAngle">arc.endAngle</a> - get or set the end angle accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-arc_centroid">arc.centroid</a> - compute the arc centroid.</li>
+<li><a href="SVG-Shapes.html#wiki-symbol">d3.svg.symbol</a> - create a new symbol generator.</li>
+<li><a href="SVG-Shapes.html#wiki-_symbol">symbol</a> - generate categorical symbols, as in a scatterplot.</li>
+<li><a href="SVG-Shapes.html#wiki-symbol_type">symbol.type</a> - get or set the symbol type accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-symbol_size">symbol.size</a> - get or set the symbol size (in square pixels) accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-symbolTypes">d3.svg.symbolTypes</a> - the array of supported symbol types.</li>
+<li><a href="SVG-Shapes.html#wiki-chord">d3.svg.chord</a> - create a new chord generator.</li>
+<li><a href="SVG-Shapes.html#wiki-_chord">chord</a> - generate a quadratic Bézier connecting two arcs, as in a chord diagram.</li>
+<li><a href="SVG-Shapes.html#wiki-chord_radius">chord.radius</a> - get or set the arc radius accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-chord_startAngle">chord.startAngle</a> - get or set the arc start angle accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-chord_endAngle">chord.endAngle</a> - get or set the arc end angle accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-chord_source">chord.source</a> - get or set the source arc accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-chord_target">chord.target</a> - get or set the target arc accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-diagonal">d3.svg.diagonal</a> - create a new diagonal generator.</li>
+<li><a href="SVG-Shapes.html#wiki-_diagonal">diagonal</a> - generate a two-dimensional Bézier connector, as in a node-link diagram.</li>
+<li><a href="SVG-Shapes.html#wiki-diagonal_source">diagonal.source</a> - get or set the source point accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-diagonal_target">diagonal.target</a> - get or set the target point accessor.</li>
+<li><a href="SVG-Shapes.html#wiki-diagonal_projection">diagonal.projection</a> - get or set an optional point transform.</li>
+<li><a href="SVG-Shapes.html#wiki-diagonal_radial">d3.svg.diagonal.radial</a> - create a new diagonal generator.</li>
+<li><a href="SVG-Shapes.html#wiki-_diagonal_radial">diagonal</a> - generate a two-dimensional Bézier connector, as in a node-link diagram.</li>
+</ul>
+<h3><a href="SVG-Axes.html">Axes</a></h3>
+<ul>
+<li><a href="SVG-Axes.html#wiki-axis">d3.svg.axis</a> - create a new axis generator.</li>
+<li><a href="SVG-Axes.html#wiki-_axis">axis</a> - creates or updates an axis for the given selection or transition.</li>
+<li><a href="SVG-Axes.html#wiki-scale">axis.scale</a> - get or set the axis scale.</li>
+<li><a href="SVG-Axes.html#wiki-orient">axis.orient</a> - get or set the axis orientation.</li>
+<li><a href="SVG-Axes.html#wiki-ticks">axis.ticks</a> - control how ticks are generated for the axis.</li>
+<li><a href="SVG-Axes.html#wiki-tickValues">axis.tickValues</a> - specify tick values explicitly.</li>
+<li><a href="SVG-Axes.html#wiki-tickSubdivide">axis.tickSubdivide</a> - optionally subdivide ticks uniformly.</li>
+<li><a href="SVG-Axes.html#wiki-tickSize">axis.tickSize</a> - specify the size of major, minor and end ticks.</li>
+<li><a href="SVG-Axes.html#wiki-tickPadding">axis.tickPadding</a> - specify padding between ticks and tick labels.</li>
+<li><a href="SVG-Axes.html#wiki-tickFormat">axis.tickFormat</a> - override the tick formatting for labels.</li>
+</ul>
+<h3><a href="SVG-Controls.html">Controls</a></h3>
+<ul>
+<li><a href="SVG-Controls.html#wiki-brush">d3.svg.brush</a> - click and drag to select one- or two-dimensional regions.</li>
+<li><a href="SVG-Controls.html#wiki-_brush">brush</a> - creates or updates a brush for the given selection or transition.</li>
+<li><a href="SVG-Controls.html#wiki-brush_x">brush.x</a> - get or set the brush’s x-scale.</li>
+<li><a href="SVG-Controls.html#wiki-brush_y">brush.y</a> - get or set the brush’s y-scale.</li>
+<li><a href="SVG-Controls.html#wiki-brush_extent">brush.extent</a> - get or set the brush’s extent.</li>
+<li><a href="SVG-Controls.html#wiki-brush_clear">brush.clear</a> - reset the brush extent.</li>
+<li><a href="SVG-Controls.html#wiki-brush_empty">brush.empty</a> - returns true if the brush extent is empty.</li>
+<li><a href="SVG-Controls.html#wiki-brush_on">brush.on</a> - respond to events when the brush is moved.</li>
+</ul>
+<h2><a href="Time.html">d3.time (Time)</a></h2>
+<h3><a href="Time-Formatting.html">Time Formatting</a></h3>
+<ul>
+<li><a href="Time-Formatting.html#wiki-format">d3.time.format</a> - create a new local time formatter for a given specifier.</li>
+<li><a href="Time-Formatting.html#wiki-_format">format</a> - format a date into a string.</li>
+<li><a href="Time-Formatting.html#wiki-parse">format.parse</a> - parse a string into a date.</li>
+<li><a href="Time-Formatting.html#wiki-format_utc">d3.time.format.utc</a> - create a new UTC time formatter for a given specifier.</li>
+<li><a href="Time-Formatting.html#wiki-format_iso">d3.time.format.iso</a> - the ISO 8601 UTC time formatter.</li>
+</ul>
+<h3><a href="Time-Scales.html">Time Scales</a></h3>
+<ul>
+<li><a href="Time-Scales.html#wiki-scale">d3.time.scale</a> - construct a linear time scale.</li>
+<li><a href="Time-Scales.html#wiki-_scale">scale</a> - get the range value corresponding to a given domain value.</li>
+<li><a href="Time-Scales.html#wiki-invert">scale.invert</a> - get the domain value corresponding to a given range value.</li>
+<li><a href="Time-Scales.html#wiki-domain">scale.domain</a> - get or set the scale&#39;s input domain.</li>
+<li><a href="Time-Scales.html#wiki-range">scale.range</a> - get or set the scale&#39;s output range.</li>
+<li><a href="Time-Scales.html#wiki-rangeRound">scale.rangeRound</a> - set the scale&#39;s output range, and enable rounding.</li>
+<li><a href="Time-Scales.html#wiki-interpolate">scale.interpolate</a> - get or set the scale&#39;s output interpolator.</li>
+<li><a href="Time-Scales.html#wiki-clamp">scale.clamp</a> - enable or disable clamping of the output range.</li>
+<li><a href="Time-Scales.html#wiki-ticks">scale.ticks</a> - get representative values from the input domain.</li>
+<li><a href="Time-Scales.html#wiki-tickFormat">scale.tickFormat</a> - get a formatter for displaying tick values.</li>
+<li><a href="Time-Scales.html#wiki-copy">scale.copy</a> - create a new scale from an existing scale.</li>
+</ul>
+<h3><a href="Time-Intervals.html">Time Intervals</a></h3>
+<ul>
+<li><a href="Time-Intervals.html#wiki-interval">d3.time.interval</a> - a time interval in local time.</li>
+<li><a href="Time-Intervals.html#wiki-_interval">interval</a> - alias for interval.floor.</li>
+<li><a href="Time-Intervals.html#wiki-interval_range">interval.range</a> - returns dates within the specified range.</li>
+<li><a href="Time-Intervals.html#wiki-interval_floor">interval.floor</a> - rounds down to the nearest interval.</li>
+<li><a href="Time-Intervals.html#wiki-interval_round">interval.round</a> - rounds up or down to the nearest interval.</li>
+<li><a href="Time-Intervals.html#wiki-interval_ceil">interval.ceil</a> - rounds up to the nearest interval.</li>
+<li><a href="Time-Intervals.html#wiki-interval_offset">interval.offset</a> - returns a date offset by some interval.</li>
+<li><a href="Time-Intervals.html#wiki-interval_utc">interval.utc</a> - returns the UTC-equivalent time interval.</li>
+<li><a href="Time-Intervals.html#wiki-day">d3.time.day</a> - every day (12:00 AM).</li>
+<li><a href="Time-Intervals.html#wiki-day">d3.time.days</a> - alias for day.range.</li>
+<li><a href="Time-Intervals.html#wiki-dayOfYear">d3.time.dayOfYear</a> - computes the day number.</li>
+<li><a href="Time-Intervals.html#wiki-hour">d3.time.hour</a> - every hour (e.g., 1:00 AM).</li>
+<li><a href="Time-Intervals.html#wiki-hours">d3.time.hours</a> - alias for hour.range.</li>
+<li><a href="Time-Intervals.html#wiki-minute">d3.time.minute</a> - every minute (e.g., 1:02 AM).</li>
+<li><a href="Time-Intervals.html#wiki-minutes">d3.time.minutes</a> - alias for minute.range.</li>
+<li><a href="Time-Intervals.html#wiki-month">d3.time.month</a> - every month (e.g., February 1, 12:00 AM).</li>
+<li><a href="Time-Intervals.html#wiki-months">d3.time.months</a> - alias for month.range.</li>
+<li><a href="Time-Intervals.html#wiki-second">d3.time.second</a> - every second (e.g., 1:02:03 AM).</li>
+<li><a href="Time-Intervals.html#wiki-seconds">d3.time.seconds</a> - alias for second.range.</li>
+<li><a href="Time-Intervals.html#wiki-sunday">d3.time.sunday</a> - every Sunday (e.g., February 5, 12:00 AM).</li>
+<li><a href="Time-Intervals.html#wiki-sundays">d3.time.sundays</a> - alias for sunday.range.</li>
+<li><a href="Time-Intervals.html#wiki-sundayOfYear">d3.time.sundayOfYear</a> - computes the sunday-based week number.</li>
+<li><a href="Time-Intervals.html#wiki-monday">d3.time.monday</a> - every Monday (e.g., February 5, 12:00 AM).</li>
+<li><a href="Time-Intervals.html#wiki-mondays">d3.time.mondays</a> - alias for monday.range.</li>
+<li><a href="Time-Intervals.html#wiki-mondayOfYear">d3.time.mondayOfYear</a> - computes the monday-based week number.</li>
+<li><a href="Time-Intervals.html#wiki-tuesday">d3.time.tuesday</a> - every Tuesday (e.g., February 5, 12:00 AM).</li>
+<li><a href="Time-Intervals.html#wiki-tuesdays">d3.time.tuesdays</a> - alias for tuesday.range.</li>
+<li><a href="Time-Intervals.html#wiki-tuesdayOfYear">d3.time.tuesdayOfYear</a> - computes the tuesday-based week number.</li>
+<li><a href="Time-Intervals.html#wiki-wednesday">d3.time.wednesday</a> - every Wednesday (e.g., February 5, 12:00 AM).</li>
+<li><a href="Time-Intervals.html#wiki-wednesdays">d3.time.wednesdays</a> - alias for wednesday.range.</li>
+<li><a href="Time-Intervals.html#wiki-tuesdayOfYear">d3.time.wednesdayOfYear</a> - computes the wednesday-based week number.</li>
+<li><a href="Time-Intervals.html#wiki-thursday">d3.time.thursday</a> - every Thursday (e.g., February 5, 12:00 AM).</li>
+<li><a href="Time-Intervals.html#wiki-thursdays">d3.time.thursdays</a> - alias for thursday.range.</li>
+<li><a href="Time-Intervals.html#wiki-thursdayOfYear">d3.time.thursdayOfYear</a> - computes the thursday-based week number.</li>
+<li><a href="Time-Intervals.html#wiki-friday">d3.time.friday</a> - every Friday (e.g., February 5, 12:00 AM).</li>
+<li><a href="Time-Intervals.html#wiki-fridays">d3.time.fridays</a> - alias for friday.range.</li>
+<li><a href="Time-Intervals.html#wiki-fridayOfYear">d3.time.fridayOfYear</a> - computes the friday-based week number.</li>
+<li><a href="Time-Intervals.html#wiki-saturday">d3.time.saturday</a> - every Saturday (e.g., February 5, 12:00 AM).</li>
+<li><a href="Time-Intervals.html#wiki-saturdays">d3.time.saturdays</a> - alias for saturday.range.</li>
+<li><a href="Time-Intervals.html#wiki-saturdayOfYear">d3.time.saturdayOfYear</a> - computes the saturday-based week number.</li>
+<li><a href="Time-Intervals.html#wiki-week">d3.time.week</a> - alias for sunday.</li>
+<li><a href="Time-Intervals.html#wiki-weeks">d3.time.weeks</a> - alias for sunday.range.</li>
+<li><a href="Time-Intervals.html#wiki-weekOfYear">d3.time.weekOfYear</a> - alias for sundayOfYear.</li>
+<li><a href="Time-Intervals.html#wiki-year">d3.time.year</a> - every year (e.g., January 1, 12:00 AM).</li>
+<li><a href="Time-Intervals.html#wiki-years">d3.time.years</a> - alias for year.range.</li>
+</ul>
+<h2><a href="Layouts.html">d3.layout (Layouts)</a></h2>
+<h3><a href="Bundle-Layout.html">Bundle</a></h3>
+<ul>
+<li><a href="Bundle-Layout.html#wiki-bundle">d3.layout.bundle</a> - construct a new default bundle layout.</li>
+<li><a href="Bundle-Layout.html#wiki-_bundle">bundle</a> - apply Holten&#39;s <em>hierarchical bundling</em> algorithm to edges.</li>
+</ul>
+<h3><a href="Chord-Layout.html">Chord</a></h3>
+<ul>
+<li><a href="Chord-Layout.html#wiki-chord">d3.layout.chord</a> - produce a chord diagram from a matrix of relationships.</li>
+<li><a href="Chord-Layout.html#wiki-matrix">chord.matrix</a> - get or set the matrix data backing the layout.</li>
+<li><a href="Chord-Layout.html#wiki-padding">chord.padding</a> - get or set the angular padding between chord segments.</li>
+<li><a href="Chord-Layout.html#wiki-sortGroups">chord.sortGroups</a> - get or set the comparator function for groups.</li>
+<li><a href="Chord-Layout.html#wiki-sortSubgroups">chord.sortSubgroups</a> - get or set the comparator function for subgroups.</li>
+<li><a href="Chord-Layout.html#wiki-sortChords">chord.sortChords</a> - get or set the comparator function for chords (z-order).</li>
+<li><a href="Chord-Layout.html#wiki-chords">chord.chords</a> - retrieve the computed chord angles.</li>
+<li><a href="Chord-Layout.html#wiki-groups">chord.groups</a> - retrieve the computed group angles.</li>
+</ul>
+<h3><a href="Cluster-Layout.html">Cluster</a></h3>
+<ul>
+<li><a href="Cluster-Layout.html#wiki-cluster">d3.layout.cluster</a> - cluster entities into a dendrogram.</li>
+<li><a href="Cluster-Layout.html#wiki-sort">cluster.sort</a> - get or set the comparator function for sibling nodes.</li>
+<li><a href="Cluster-Layout.html#wiki-children">cluster.children</a> - get or set the accessor function for child nodes.</li>
+<li><a href="Cluster-Layout.html#wiki-nodes">cluster.nodes</a> - compute the cluster layout and return the array of nodes.</li>
+<li><a href="Cluster-Layout.html#wiki-links">cluster.links</a> - compute the parent-child links between tree nodes.</li>
+<li><a href="Cluster-Layout.html#wiki-separation">cluster.separation</a> - get or set the spacing function between neighboring nodes.</li>
+<li><a href="Cluster-Layout.html#wiki-size">cluster.size</a> - get or set the layout size in <em>x</em> and <em>y</em>.</li>
+</ul>
+<h3><a href="Force-Layout.html">Force</a></h3>
+<ul>
+<li><a href="Force-Layout.html#wiki-force">d3.layout.force</a> - position linked nodes using physical simulation.</li>
+<li><a href="Force-Layout.html#wiki-on">force.on</a> - listen to updates in the computed layout positions.</li>
+<li><a href="Force-Layout.html#wiki-nodes">force.nodes</a> - get or set the array of nodes to layout.</li>
+<li><a href="Force-Layout.html#wiki-links">force.links</a> - get or set the array of links between nodes.</li>
+<li><a href="Force-Layout.html#wiki-size">force.size</a> - get or set the layout size in <em>x</em> and <em>y</em>.</li>
+<li><a href="Force-Layout.html#wiki-linkDistance">force.linkDistance</a> - get or set the link distance.</li>
+<li><a href="Force-Layout.html#wiki-linkStrength">force.linkStrength</a> - get or set the link strength.</li>
+<li><a href="Force-Layout.html#wiki-friction">force.friction</a> - get or set the friction coefficient.</li>
+<li><a href="Force-Layout.html#wiki-charge">force.charge</a> - get or set the charge strength.</li>
+<li><a href="Force-Layout.html#wiki-gravity">force.gravity</a> - get or set the gravity strength.</li>
+<li><a href="Force-Layout.html#wiki-theta">force.theta</a> - get or set the accuracy of the charge interaction.</li>
+<li><a href="Force-Layout.html#wiki-start">force.start</a> - start or restart the simulation when the nodes change.</li>
+<li><a href="Force-Layout.html#wiki-resume">force.resume</a> - reheat the cooling parameter and restart simulation.</li>
+<li><a href="Force-Layout.html#wiki-stop">force.stop</a> - immediately terminate the simulation.</li>
+<li><a href="Force-Layout.html#wiki-alpha">force.alpha</a> - get or set the layout&#39;s cooling parameter.</li>
+<li><a href="Force-Layout.html#wiki-tick">force.tick</a> - run the layout simulation one step.</li>
+<li><a href="Force-Layout.html#wiki-drag">force.drag</a> - bind a behavior to nodes to allow interactive dragging.</li>
+</ul>
+<h3><a href="Hierarchy-Layout.html">Hierarchy</a></h3>
+<ul>
+<li><a href="Hierarchy-Layout.html#wiki-hierarchy">d3.layout.hierarchy</a> - derive a custom hierarchical layout implementation.</li>
+<li><a href="Hierarchy-Layout.html#wiki-sort">hierarchy.sort</a> - get or set the comparator function for sibling nodes.</li>
+<li><a href="Hierarchy-Layout.html#wiki-children">hierarchy.children</a> - get or set the accessor function for child nodes.</li>
+<li><a href="Hierarchy-Layout.html#wiki-nodes">hierarchy.nodes</a> - compute the layout and return the array of nodes.</li>
+<li><a href="Hierarchy-Layout.html#wiki-links">hierarchy.links</a> - compute the parent-child links between tree nodes.</li>
+<li><a href="Hierarchy-Layout.html#wiki-value">hierarchy.value</a> - get or set the value accessor function.</li>
+<li><a href="Hierarchy-Layout.html#wiki-revalue">hierarchy.revalue</a> - recompute the hierarchy values.</li>
+</ul>
+<h3><a href="Histogram-Layout.html">Histogram</a></h3>
+<ul>
+<li><a href="Histogram-Layout.html#wiki-histogram">d3.layout.histogram</a> - construct a new default histogram layout.</li>
+<li><a href="Histogram-Layout.html#wiki-_histogram">histogram</a> - compute the distribution of data using quantized bins.</li>
+<li><a href="Histogram-Layout.html#wiki-value">histogram.value</a> - get or set the value accessor function.</li>
+<li><a href="Histogram-Layout.html#wiki-range">histogram.range</a> - get or set the considered value range.</li>
+<li><a href="Histogram-Layout.html#wiki-bins">histogram.bins</a> - specify how values are organized into bins.</li>
+<li><a href="Histogram-Layout.html#wiki-frequency">histogram.frequency</a> - compute the distribution as counts or probabilities.</li>
+</ul>
+<h3><a href="Pack-Layout.html">Pack</a></h3>
+<ul>
+<li><a href="Pack-Layout.html#wiki-pack">d3.layout.pack</a> - produce a hierarchical layout using recursive circle-packing.</li>
+<li><a href="Pack-Layout.html#wiki-sort">pack.sort</a> - control the order in which sibling nodes are traversed.</li>
+<li><a href="Pack-Layout.html#wiki-children">pack.children</a> - get or set the children accessor function.</li>
+<li><a href="Pack-Layout.html#wiki-nodes">pack.nodes</a> - compute the pack layout and return the array of nodes.</li>
+<li><a href="Pack-Layout.html#wiki-links">pack.links</a> - compute the parent-child links between tree nodes.</li>
+<li><a href="Pack-Layout.html#wiki-value">pack.value</a> - get or set the value accessor used to size circles.</li>
+<li><a href="Pack-Layout.html#wiki-size">pack.size</a> - specify the layout size in <em>x</em> and <em>y</em>.</li>
+<li><a href="Pack-Layout.html#wiki-padding">pack.padding</a> - specify the layout padding in (approximate) pixels.</li>
+</ul>
+<h3><a href="Partition-Layout.html">Partition</a></h3>
+<ul>
+<li><a href="Partition-Layout.html#wiki-partition">d3.layout.partition</a> - recursively partition a node tree into a sunburst or icicle.</li>
+<li><a href="Partition-Layout.html#wiki-sort">partition.sort</a> - control the order in which sibling nodes are traversed.</li>
+<li><a href="Partition-Layout.html#wiki-children">partition.children</a> - get or set the children accessor function.</li>
+<li><a href="Partition-Layout.html#wiki-nodes">partition.nodes</a> - compute the partition layout and return the array of nodes.</li>
+<li><a href="Partition-Layout.html#wiki-links">partition.links</a> - compute the parent-child links between tree nodes.</li>
+<li><a href="Partition-Layout.html#wiki-value">partition.value</a> - get or set the value accessor used to size circles.</li>
+<li><a href="Partition-Layout.html#wiki-size">partition.size</a> - specify the layout size in <em>x</em> and <em>y</em>.</li>
+</ul>
+<h3><a href="Pie-Layout.html">Pie</a></h3>
+<ul>
+<li><a href="Pie-Layout.html#wiki-pie">d3.layout.pie</a> - construct a new default pie layout.</li>
+<li><a href="Pie-Layout.html#wiki-_pie">pie</a> - compute the start and end angles for arcs in a pie or donut chart.</li>
+<li><a href="Pie-Layout.html#wiki-value">pie.value</a> - get or set the value accessor function.</li>
+<li><a href="Pie-Layout.html#wiki-sort">pie.sort</a> - control the clockwise order of pie slices.</li>
+<li><a href="Pie-Layout.html#wiki-startAngle">pie.startAngle</a> - get or set the overall start angle of the pie.</li>
+<li><a href="Pie-Layout.html#wiki-endAngle">pie.endAngle</a> - get or set the overall end angle of the pie.</li>
+</ul>
+<h3><a href="Stack-Layout.html">Stack</a></h3>
+<ul>
+<li><a href="Stack-Layout.html#wiki-stack">d3.layout.stack</a> - construct a new default stack layout.</li>
+<li><a href="Stack-Layout.html#wiki-_stack">stack</a> - compute the baseline for each series in a stacked bar or area chart.</li>
+<li><a href="Stack-Layout.html#wiki-values">stack.values</a> - get or set the values accessor function per series.</li>
+<li><a href="Stack-Layout.html#wiki-order">stack.order</a> - control the order in which series are stacked.</li>
+<li><a href="Stack-Layout.html#wiki-offset">stack.offset</a> - specify the overall baseline algorithm.</li>
+<li><a href="Stack-Layout.html#wiki-x">stack.x</a> - get or set the <em>x</em>-dimension accessor function.</li>
+<li><a href="Stack-Layout.html#wiki-y">stack.y</a> - get or set the <em>y</em>-dimension accessor function.</li>
+<li><a href="Stack-Layout.html#wiki-out">stack.out</a> - get or set the output function for storing the baseline.</li>
+</ul>
+<h3><a href="Tree-Layout.html">Tree</a></h3>
+<ul>
+<li><a href="Tree-Layout.html#wiki-tree">d3.layout.tree</a> - position a tree of nodes tidily.</li>
+<li><a href="Tree-Layout.html#wiki-sort">tree.sort</a> - control the order in which sibling nodes are traversed.</li>
+<li><a href="Tree-Layout.html#wiki-children">tree.children</a> - get or set the children accessor function.</li>
+<li><a href="Tree-Layout.html#wiki-nodes">tree.nodes</a> - compute the tree layout and return the array of nodes.</li>
+<li><a href="Tree-Layout.html#wiki-links">tree.links</a> - compute the parent-child links between tree nodes.</li>
+<li><a href="Tree-Layout.html#wiki-separation">tree.separation</a> - get or set the spacing function between neighboring nodes.</li>
+<li><a href="Tree-Layout.html#wiki-size">tree.size</a> - specify the layout size in <em>x</em> and <em>y</em>.</li>
+</ul>
+<h3><a href="Treemap-Layout.html">Treemap</a></h3>
+<ul>
+<li><a href="Treemap-Layout.html#wiki-treemap">d3.layout.treemap</a> - use recursive spatial subdivision to display a tree of nodes.</li>
+<li><a href="Treemap-Layout.html#wiki-sort">treemap.sort</a> - control the order in which sibling nodes are traversed.</li>
+<li><a href="Treemap-Layout.html#wiki-children">treemap.children</a> - get or set the children accessor function.</li>
+<li><a href="Treemap-Layout.html#wiki-nodes">treemap.nodes</a> - compute the treemap layout and return the array of nodes.</li>
+<li><a href="Treemap-Layout.html#wiki-links">treemap.links</a> - compute the parent-child links between tree nodes.</li>
+<li><a href="Treemap-Layout.html#wiki-value">treemap.value</a> - get or set the value accessor used to size treemap cells.</li>
+<li><a href="Treemap-Layout.html#wiki-size">treemap.size</a> - specify the layout size in <em>x</em> and <em>y</em>.</li>
+<li><a href="Treemap-Layout.html#wiki-padding">treemap.padding</a> - specify the padding between a parent and its children.</li>
+<li><a href="Treemap-Layout.html#wiki-round">treemap.round</a> - enable or disable rounding to exact pixels.</li>
+<li><a href="Treemap-Layout.html#wiki-sticky">treemap.sticky</a> - make the layout sticky for stable updates.</li>
+<li><a href="Treemap-Layout.html#wiki-mode">treemap.mode</a> - change the treemap layout algorithm.</li>
+</ul>
+<h2><a href="Geo.html">d3.geo (Geography)</a></h2>
+<h3><a href="Geo-Paths.html">Paths</a></h3>
+<ul>
+<li><a href="Geo-Paths.html#wiki-path">d3.geo.path</a> - create a new geographic path generator.</li>
+<li><a href="Geo-Paths.html#wiki-_path">path</a> - project the specified feature and render it to the context.</li>
+<li><a href="Geo-Paths.html#wiki-projection">path.projection</a> - get or set the geographic projection.</li>
+<li><a href="Geo-Paths.html#wiki-context">path.context</a> - get or set the render context.</li>
+<li><a href="Geo-Paths.html#wiki-pointRadius">path.pointRadius</a> - get or set the radius to display point features.</li>
+<li><a href="Geo-Paths.html#wiki-area">path.area</a> - compute the projected area of a given feature.</li>
+<li><a href="Geo-Paths.html#wiki-centroid">path.centroid</a> - compute the projected centroid of a given feature.</li>
+<li><a href="Geo-Paths.html#wiki-bounds">path.bounds</a> - compute the projected bounds of a given feature.</li>
+<li><a href="Geo-Paths.html#wiki-greatArc">d3.geo.greatArc</a> - create a great arc path generator.</li>
+<li><a href="Geo-Paths.html#wiki-_greatArc">greatArc</a> - generate a piecewise great arc between two points as a LineString.</li>
+<li><a href="Geo-Paths.html#wiki-greatArc_distance">greatArc.distance</a> - computes the length of a great arc in radians.</li>
+<li><a href="Geo-Paths.html#wiki-greatArc_source">greatArc.source</a> - specify a source accessor.</li>
+<li><a href="Geo-Paths.html#wiki-greatArc_target">greatArc.target</a> - specify a target accessor.</li>
+<li><a href="Geo-Paths.html#wiki-greatArc_precision">greatArc.precision</a> - specify the precision of the piecewise arc.</li>
+<li><a href="Geo-Paths.html#wiki-circle">d3.geo.circle</a> - create a circle generator.</li>
+<li><a href="Geo-Paths.html#wiki-_circle">circle</a> - generate a piecewise circle as a Polygon. </li>
+<li><a href="Geo-Paths.html#wiki-circle_origin">circle.origin</a> - specify the origin in latitude and longitude.</li>
+<li><a href="Geo-Paths.html#wiki-circle_angle">circle.angle</a> - specify the angular radius in degrees.</li>
+<li><a href="Geo-Paths.html#wiki-circle_precision">circle.precision</a> - specify the precision of the piecewise circle.</li>
+<li><a href="Geo-Paths.html#wiki-d3_geo_area">d3.geo.area</a> - compute the spherical area of a given feature.</li>
+<li><a href="Geo-Paths.html#wiki-d3_geo_centroid">d3.geo.centroid</a> - compute the spherical centroid of a given feature.</li>
+<li><a href="Geo-Paths.html#wiki-d3_geo_bounds">d3.geo.bounds</a> - compute the latitude-longitude bounding box for a given feature.</li>
+<li><a href="Geo-Paths.html#wiki-d3_geo_interpolate">d3.geo.interpolate</a> - interpolate between two points along a great arc.</li>
+</ul>
+<h3><a href="Geo-Projections.html">Projections</a></h3>
+<ul>
+<li><a href="Geo-Projections.html#wiki-projection">d3.geo.projection</a> - create a standard projection from a raw projection.</li>
+<li><a href="Geo-Projections.html#wiki-_projection">projection</a> - project the specified location.</li>
+<li><a href="Geo-Projections.html#wiki-invert">projection.invert</a> - invert the projection for the specified point.</li>
+<li><a href="Geo-Projections.html#wiki-rotate">projection.rotate</a> - get or set the projection’s three-axis rotation.</li>
+<li><a href="Geo-Projections.html#wiki-center">projection.center</a> - get or set the projection’s center location.</li>
+<li><a href="Geo-Projections.html#wiki-translate">projection.translate</a> - get or set the projection’s translation position.</li>
+<li><a href="Geo-Projections.html#wiki-scale">projection.scale</a> - get or set the projection’s scale factor.</li>
+<li><a href="Geo-Projections.html#wiki-clipAngle">projection.clipAngle</a> - get or set the radius of the projection’s clip circle.</li>
+<li><a href="Geo-Projections.html#wiki-precision">projection.precision</a> - get or set the precision threshold for adaptive resampling.</li>
+<li><a href="Geo-Projections.html#wiki-stream">projection.stream</a> - wrap the specified stream listener, projecting input geometry.</li>
+<li><a href="Geo-Projections.html#wiki-projectionMutator">d3.geo.projectionMutator</a> - create a standard projection from a mutable raw projection.</li>
+<li><a href="Geo-Projections.html#wiki-albers">d3.geo.albers</a> - the Albers equal-area conic projection.</li>
+<li><a href="Geo-Projections.html#wiki-albers_parallels">albers.parallels</a> - get or set the projection&#39;s two standard parallels.</li>
+<li><a href="Geo-Projections.html#wiki-albersUsa">d3.geo.albersUsa</a> - a composite Albers projection for the United States.</li>
+<li><a href="Geo-Projections.html#wiki-azimuthalEqualArea">d3.geo.azimuthalEqualArea</a> - the azimuthal equal-area projection.</li>
+<li><a href="Geo-Projections.html#wiki-azimuthalEquidistant">d3.geo.azimuthalEquidistant</a> - the azimuthal equidistant projection.</li>
+<li><a href="Geo-Projections.html#wiki-equirectangular">d3.geo.equirectangular</a> - the equirectangular (plate carreé) projection.</li>
+<li><a href="Geo-Projections.html#wiki-gnomonic">d3.geo.gnomonic</a> - the gnomonic projection.</li>
+<li><a href="Geo-Projections.html#wiki-mercator">d3.geo.mercator</a> - the spherical Mercator projection.</li>
+<li><a href="Geo-Projections.html#wiki-orthographic">d3.geo.orthographic</a> - the azimuthal orthographic projection.</li>
+<li><a href="Geo-Projections.html#wiki-stereographic">d3.geo.stereographic</a> - the azimuthal stereographic projection.</li>
+<li><a href="Geo-Projections.html#wiki-albers_raw">d3.geo.albers.raw</a> - the raw Albers equal-area conic projection.</li>
+<li><a href="Geo-Projections.html#wiki-azimuthalEqualArea_raw">d3.geo.azimuthalEqualArea.raw</a> - the raw azimuthal equal-area projection.</li>
+<li><a href="Geo-Projections.html#wiki-azimuthalEquidistant_raw">d3.geo.azimuthalEquidistant.raw</a> - the azimuthal equidistant projection.</li>
+<li><a href="Geo-Projections.html#wiki-equirectangular_raw">d3.geo.equirectangular.raw</a> - the raw equirectangular (plate carrée) projection.</li>
+<li><a href="Geo-Projections.html#wiki-gnomonic_raw">d3.geo.gnomonic.raw</a> - the raw gnomonic projection.</li>
+<li><a href="Geo-Projections.html#wiki-mercator_raw">d3.geo.mercator.raw</a> - the raw Mercator projection.</li>
+<li><a href="Geo-Projections.html#wiki-orthographic_raw">d3.geo.orthographic.raw</a> - the raw azimuthal orthographic projection.</li>
+<li><a href="Geo-Projections.html#wiki-stereographic_raw">d3.geo.stereographic.raw</a> - the raw azimuthal stereographic projection.</li>
+</ul>
+<h3><a href="Geo-Streams.html">Streams</a></h3>
+<ul>
+<li><a href="Geo-Streams.html#d3_geo_stream">d3.geo.stream</a> - convert a GeoJSON object to a geometry stream.</li>
+<li><a href="Geo-Streams.html#point">stream.point</a> - indicate an <em>x</em>, <em>y</em> (and optionally <em>z</em>) coordinate.</li>
+<li><a href="Geo-Streams.html#lineStart">stream.lineStart</a> - indicate the start of a line or ring.</li>
+<li><a href="Geo-Streams.html#lineEnd">stream.lineEnd</a> - indicate the end of a line or ring.</li>
+<li><a href="Geo-Streams.html#polygonStart">stream.polygonStart</a> - indicate the start of a polygon.</li>
+<li><a href="Geo-Streams.html#polygonEnd">stream.polygonEnd</a> - indicate the end of a polygon.</li>
+<li><a href="Geo-Streams.html#sphere">stream.sphere</a> - indicate a sphere.</li>
+</ul>
+<h2><a href="Geometry.html">d3.geom (Geometry)</a></h2>
+<h3><a href="Voronoi-Geom.html">Voronoi</a></h3>
+<ul>
+<li><a href="Voronoi-Geom.html#wiki-voronoi">d3.geom.voronoi</a> - compute the Voronoi diagram for the specified points.</li>
+<li><a href="Voronoi-Geom.html#wiki-delaunay">d3.geom.delaunay</a> - compute the Delaunay triangulation for the specified points.</li>
+</ul>
+<h3><a href="Quadtree-Geom.html">Quadtree</a></h3>
+<ul>
+<li><a href="Quadtree-Geom.html#wiki-quadtree">d3.geom.quadtree</a> - constructs a quadtree for an array of points.</li>
+<li><a href="Quadtree-Geom.html#wiki-add">quadtree.add</a> - add a point to the quadtree.</li>
+<li><a href="Quadtree-Geom.html#wiki-visit">quadtree.visit</a> - recursively visit nodes in the quadtree.</li>
+</ul>
+<h3><a href="Polygon-Geom.html">Polygon</a></h3>
+<ul>
+<li><a href="Polygon-Geom.html#wiki-polygon">d3.geom.polygon</a></li>
+<li><a href="Polygon-Geom.html#wiki-area">polygon.area</a></li>
+<li><a href="Polygon-Geom.html#wiki-centroid">polygon.centroid</a></li>
+<li><a href="Polygon-Geom.html#wiki-clip">polygon.clip</a></li>
+</ul>
+<h3><a href="Hull-Geom.html">Hull</a></h3>
+<ul>
+<li><a href="Hull-Geom.html#wiki-hull">d3.geom.hull</a></li>
+</ul>
+<h2><a href="Behaviors.html">d3.behavior (Behaviors)</a></h2>
+<h3><a href="Drag-Behavior.html">Drag</a></h3>
+<ul>
+<li><a href="Drag-Behavior.html#wiki-drag">d3.behavior.drag</a></li>
+<li><a href="Drag-Behavior.html#wiki-origin">drag.origin</a></li>
+<li><a href="Drag-Behavior.html#wiki-on">drag.on</a></li>
+</ul>
+<h3><a href="Zoom-Behavior.html">Zoom</a></h3>
+<ul>
+<li><a href="Zoom-Behavior.html#wiki-zoom">d3.behavior.zoom</a></li>
+<li><a href="Zoom-Behavior.html#wiki-on">zoom.on</a></li>
+<li><a href="Zoom-Behavior.html#wiki-scale">zoom.scale</a></li>
+<li><a href="Zoom-Behavior.html#wiki-translate">zoom.translate</a></li>
+<li><a href="Zoom-Behavior.html#wiki-scaleExtent">zoom.scaleExtent</a></li>
+<li><a href="Zoom-Behavior.html#wiki-x">zoom.x</a></li>
+<li><a href="Zoom-Behavior.html#wiki-y">zoom.y</a></li>
+</ul>
+
+</body>
+</html>

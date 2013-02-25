@@ -1,0 +1,83 @@
+<!-- single file version -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="css/github.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8" />
+</head>
+<body>
+<h1>Colors</h1>
+<p>Constructing visualizations often involves working with colors. Even though your browser understands a lot about colors, it doesn&#39;t offer much help in manipulating colors through JavaScript. So D3 provides representations for both RGB and HSL colors, allowing interpolation in both color spaces, and making colors brighter or darker. For more about color manipulation, see the Wikipedia entries on <a href="http://en.wikipedia.org/wiki/RGB_color_model.html">RGB</a> and <a href="http://en.wikipedia.org/wiki/HSL_and_HSV.html">HSL</a>.</p>
+<p>Note: while you can work with colors directly, you might also want to take a look at D3&#39;s built-in [interpolateRgb](Transitions.html#wiki-d3_interpolateRgb]], <a href="interpolateHsl|Transitions#wiki-d3_interpolateHsl.html">interpolateHsl|Transitions#wiki-d3_interpolateHsl</a> and [[scales|Scales).</p>
+<p>If you are looking for <strong>color palettes</strong>, see the <a href="Ordinal-Scales.html">ordinal scales</a> reference.</p>
+<h2>RGB</h2>
+<p><a name="wiki-d3_rgb" href="Colors.html#wiki-d3_rgb">#</a> d3.<b>rgb</b>(<i>r</i>, <i>g</i>, <i>b</i>)</p>
+<p>Constructs a new RGB color with the specified <em>r</em>, <em>g</em> and <em>b</em> channel values. Each channel must be specified as an integer in the range [0,255]. The channels are available as the <code>r</code>, <code>g</code> and <code>b</code> attributes of the returned object.</p>
+<p><a href="Colors.html#wiki-d3_rgb">#</a> d3.<b>rgb</b>(<i>color</i>)</p>
+<p>Constructs a new RGB color by parsing the specified <em>color</em> string. If <em>color</em> is not a string, it is coerced to a string; thus, this constructor can also be used to create a copy of an existing color, or force the conversion of a <a href="Colors.html#wiki-d3_hsl">d3.hsl</a> color to RGB. The color string may be in a variety of formats:</p>
+<ul>
+<li>rgb decimal - &quot;rgb(255,255,255)&quot;</li>
+<li>hsl decimal - &quot;hsl(120,50%,20%)&quot;</li>
+<li>rgb hexadecimal - &quot;#ffeeaa&quot;</li>
+<li>rgb shorthand hexadecimal - &quot;#fea&quot;</li>
+<li>named - &quot;red&quot;, &quot;white&quot;, &quot;blue&quot;</li>
+</ul>
+<p>The resulting color is stored as red, green and blue integer channel values in the range [0,255]. The channels are available as the <code>r</code>, <code>g</code> and <code>b</code> attributes of the returned object. The list of supported <a href="http://www.w3.org/TR/SVG/types.html.html#ColorKeywords">named colors</a> is specified by CSS. If the color is specified in HSL space, it is converted to RGB in a manner equivalent to <a href="Colors.html#wiki-hsl_rgb">hsl.rgb</a>.</p>
+<p><a name="wiki-rgb_brighter" href="Colors.html#wiki-rgb_brighter">#</a> rgb.<b>brighter</b>([<i>k</i>])</p>
+<p>Returns a brighter copy of this color. Each channel is multiplied by 0.7 ^ <em>-k</em>. If the gamma value <em>k</em> is omitted, it defaults to 1. Channel values are capped at the maximum value of 255, and the minimum value of 30.</p>
+<p><a name="wiki-rgb_darker" href="Colors.html#wiki-rgb_darker">#</a> rgb.<b>darker</b>([<i>k</i>])</p>
+<p>Returns a darker copy of this color. Each channel is multiplied by 0.7 ^ <em>k</em>. If the gamma value <em>k</em> is omitted, it defaults to 1.</p>
+<p><a name="wiki-rgb_hsl" href="Colors.html#wiki-rgb_hsl">#</a> rgb.<b>hsl</b>()</p>
+<p>Returns the equivalent color in HSL space; see <a href="Colors.html#wiki-d3_hsl">d3.hsl</a> for details on the returned object. The conversion from HSL to RGB is described in <a href="http://www.w3.org/TR/css3-color/.html#hsl-color">CSS3 Color Module Level 3</a>; this is the equivalent reverse operation.</p>
+<p><a name="wiki-rgb_toString" href="Colors.html#wiki-rgb_toString">#</a> rgb.<b>toString</b>()</p>
+<p>Converts this RGB color to a hexadecimal string, such as &quot;#f7eaba&quot;.</p>
+<h2>HSL</h2>
+<p><a name="wiki-d3_hsl" href="Colors.html#wiki-d3_hsl">#</a> d3.<b>hsl</b>(<i>h</i>, <i>s</i>, <i>l</i>)</p>
+<p>Constructs a new HSL color with the specified hue <em>h</em>, saturation <em>s</em> and lightness <em>l</em>. The hue must be a number in the range [0,360]. The saturation and lightness must be in the range [0,1] (not percentages). These values are available as the <code>h</code>, <code>s</code> and <code>l</code> attributes of the returned object.</p>
+<p><a href="Colors.html#wiki-d3_hsl">#</a> d3.<b>hsl</b>(<i>color</i>)</p>
+<p>Constructs a new HSL color by parsing the specified <em>color</em> string. If <em>color</em> is not a string, it is coerced to a string; thus, this constructor can also be used to create a copy of an existing color, or force the conversion of a <a href="Colors.html#wiki-d3_rgb">d3.rgb</a> color to HSL. The color string may be in a variety of formats:</p>
+<ul>
+<li>rgb decimal - &quot;rgb(255,255,255)&quot;</li>
+<li>hsl decimal - &quot;hsl(120,50%,20%)&quot;</li>
+<li>rgb hexadecimal - &quot;#ffeeaa&quot;</li>
+<li>rgb shorthand hexadecimal - &quot;#fea&quot;</li>
+<li>named - &quot;red&quot;, &quot;white&quot;, &quot;blue&quot;</li>
+</ul>
+<p>The resulting color is stored as hue in the range [0,360], and saturation and lightness values in the range [0,1]. These values are available as the <code>h</code>, <code>s</code> and <code>l</code> attributes of the returned object. The list of supported <a href="http://www.w3.org/TR/SVG/types.html.html#ColorKeywords">named colors</a> is specified by CSS. If the color is specified in RGB space, it is converted to HSL in a manner equivalent to <a href="Colors.html#wiki-rgb_hsl">rgb.hsl</a>.</p>
+<p><a name="wiki-hsl_brighter" href="Colors.html#wiki-hsl_brighter">#</a> hsl.<b>brighter</b>([<i>k</i>])</p>
+<p>Returns a brighter copy of this color. The lightness channel is multiplied by 0.7 ^ <em>-k</em>. If the gamma value <em>k</em> is omitted, it defaults to 1.</p>
+<p><a name="wiki-hsl_darker" href="Colors.html#wiki-hsl_darker">#</a> hsl.<b>darker</b>([<i>k</i>])</p>
+<p>Returns a darker copy of this color. The lightness channel is multiplied by 0.7 ^ <em>k</em>. If the gamma value <em>k</em> is omitted, it defaults to 1.</p>
+<p><a name="wiki-hsl_rgb" href="Colors.html#wiki-hsl_rgb">#</a> hsl.<b>rgb</b>()</p>
+<p>Returns the equivalent color in RGB space; see <a href="Colors.html#wiki-d3_rgb">d3.rgb</a> for details on the returned object. The conversion from HSL to RGB is described in <a href="http://www.w3.org/TR/css3-color/.html#hsl-color">CSS3 Color Module Level 3</a>.</p>
+<p><a name="wiki-hsl_toString" href="Colors.html#wiki-hsl_toString">#</a> hsl.<b>toString</b>()</p>
+<p>Converts this HSL color to an RGB hexadecimal string, such as &quot;#f7eaba&quot;.</p>
+<h2>HCL</h2>
+<p><a name="wiki-d3_hcl" href="#wiki-d3_hcl">#</a> d3.<b>hcl</b>(<i>h</i>, <i>c</i>, <i>l</i>)</p>
+<p>…</p>
+<p><a href="#wiki-d3_hcl">#</a> d3.<b>hcl</b>(<i>color</i>)</p>
+<p>…</p>
+<p><a name="wiki-hcl_brighter" href="#wiki-hcl_brighter">#</a> hcl.<b>brighter</b>([<i>k</i>])</p>
+<p>…</p>
+<p><a name="wiki-hcl_darker" href="#wiki-hcl_darker">#</a> hcl.<b>darker</b>([<i>k</i>])</p>
+<p>…</p>
+<p><a name="wiki-hcl_rgb" href="#wiki-hcl_rgb">#</a> hcl.<b>rgb</b>()</p>
+<p>…</p>
+<p><a name="wiki-hcl_toString" href="#wiki-hcl_toString">#</a> hcl.<b>toString</b>()</p>
+<p>Converts this HCL color to an RGB hexadecimal string, such as &quot;#f7eaba&quot;.</p>
+<h2>L*a*b*</h2>
+<p><a name="wiki-d3_lab" href="#wiki-d3_lab">#</a> d3.<b>lab</b>(<i>l</i>, <i>a</i>, <i>b</i>)</p>
+<p>…</p>
+<p><a href="#wiki-d3_lab">#</a> d3.<b>lab</b>(<i>color</i>)</p>
+<p>…</p>
+<p><a name="wiki-lab_brighter" href="#wiki-lab_brighter">#</a> lab.<b>brighter</b>([<i>k</i>])</p>
+<p>…</p>
+<p><a name="wiki-lab_darker" href="#wiki-lab_darker">#</a> lab.<b>darker</b>([<i>k</i>])</p>
+<p>…</p>
+<p><a name="wiki-lab_rgb" href="#wiki-lab_rgb">#</a> lab.<b>rgb</b>()</p>
+<p>…</p>
+<p><a name="wiki-lab_toString" href="#wiki-lab_toString">#</a> lab.<b>toString</b>()</p>
+<p>Converts this L*a*b* color to an RGB hexadecimal string, such as &quot;#f7eaba&quot;.</p>
+
+</body>
+</html>

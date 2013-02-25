@@ -1,0 +1,46 @@
+<!-- single file version -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="css/github.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8" />
+</head>
+<body>
+<h1>Home</h1>
+<p><strong>D3.js</strong> is a JavaScript library for manipulating documents based on data. <strong>D3</strong> helps you bring data to life using HTML, SVG and CSS. D3’s emphasis on web standards gives you the full capabilities of modern browsers without tying yourself to a proprietary framework, combining powerful visualization components and a data-driven approach to DOM manipulation.</p>
+<h2>Resources</h2>
+<ul>
+<li><a href="http://mbostock.github.com/d3/.html">Introduction</a></li>
+<li><a href="http://github.com/mbostock/d3/wiki/Gallery.html">Examples Gallery</a></li>
+<li><a href="http://github.com/mbostock/d3/wiki/Tutorials.html">Tutorials and Talks</a></li>
+<li><a href="API-Reference.html">API Reference</a></li>
+<li><a href="Release-Notes.html">Release Notes</a></li>
+<li><a href="/d3/d3-plugins.html">Plugins</a></li>
+<li><a href="http://stackoverflow.com/questions/tagged/d3.js.html">d3.js on Stack Overflow</a></li>
+<li><a href="http://groups.google.com/group/d3-js.html">d3-js Google Group</a></li>
+</ul>
+<h2>Browser Support</h2>
+<p>D3 supports so-called “modern” browsers, which generally means everything <em>except</em> IE8 and below. D3 is tested against Firefox, Chrome (Chromium), Safari (WebKit), Opera and IE9. Parts of D3 may work in older browsers, as the core D3 library has minimal requirements: JavaScript and the <a href="http://www.w3.org/DOM/.html">W3C DOM</a> API. For IE8, the compatibility library <a href="https://github.com/shawnbot/aight.html">Aight</a> is recommended. D3 uses the <a href="http://www.w3.org/TR/selectors-api/.html">Selectors API</a> Level 1, but you can preload <a href="http://sizzlejs.com/.html">Sizzle</a> for compatibility. You&#39;ll need a modern browser to use <a href="http://www.w3.org/TR/SVG/.html">SVG</a> and <a href="http://www.w3.org/TR/css3-transitions/.html">CSS3 Transitions</a>. D3 is not a compatibility layer, so if your browser doesn&#39;t support standards, you&#39;re out of luck. Sorry!</p>
+<h2>Installing</h2>
+<p>Download the latest version here:</p>
+<ul>
+<li><a href="http://d3js.org/d3.v3.zip">http://d3js.org/d3.v3.zip</a></li>
+</ul>
+<p>Or, to link directly to the latest release, copy this snippet:</p>
+<pre><code class="lang-html">&lt;script src=&quot;http://d3js.org/d3.v3.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+<p>Or, if you want the full repository including tests:</p>
+<ul>
+<li><a href="https://github.com/mbostock/d3/zipball/master">https://github.com/mbostock/d3/zipball/master</a></li>
+</ul>
+<p>Or, from the command line:</p>
+<pre><code class="lang-bash">git clone git://github.com/mbostock/d3.git</code></pre>
+<p>When developing locally, note that your browser may enforce strict permissions for reading files out of the local file system. <strong>If you use <a href="wiki/Requests.html">d3.xhr</a> locally (including d3.json et al.), you must have a local web server.</strong> For example, you can run Python&#39;s built-in server:</p>
+<pre><code>python -m SimpleHTTPServer 8888 &amp;</code></pre>
+<p>Once this is running, go to <a href="http://localhost:8888/">http://localhost:8888/</a>.</p>
+<p>The D3 repository should work out of the box if you just want to create new visualizations using D3. On the other hand, if you want to extend D3 with new features, fix bugs, or run tests, you should <a href="/mbostock/d3/fork_select.html">fork the D3 repository</a>, and install <a href="http://nodejs.org/.html">Node.js</a>. From the root directory of this repository, you can then install D3&#39;s dependencies:</p>
+<pre><code>npm install</code></pre>
+<p>To run the tests, use:</p>
+<pre><code>make test</code></pre>
+
+</body>
+</html>

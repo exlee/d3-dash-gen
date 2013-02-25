@@ -1,0 +1,11 @@
+{
+  "name": "dash-d3-gen",
+  "description": "Dash D3 documentation generator",
+  "author": "Przemysław Kamiński",
+  "version": "0.0.1",
+  "dependencies": {
+    "marked": "~0.2.8",
+    "sequelize": "~1.6.0-beta4",
+    "sqlite3": "~2.1.5",
+  }
+}

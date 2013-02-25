@@ -1,0 +1,31 @@
+<!-- single file version -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="css/github.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8" />
+</head>
+<body>
+<h1>Zoom Behavior</h1>
+<p>This behavior automatically creates event listeners to handle zooming and panning gestures on a container element. Both mouse and touch events are supported.</p>
+<p><a name="wiki-zoom" href="Zoom-Behavior.html#wiki-zoom">#</a> d3.behavior.<b>zoom</b>()</p>
+<p>Constructs a new zoom behavior.</p>
+<p><a name="wiki-x" href="Zoom-Behavior.html#wiki-x">#</a> zoom.<b>x</b>([<i>x</i>])</p>
+<p>Specifies an x-scale whose domain should be automatically adjusted when zooming. If not specified, returns the current x-scale, which defaults to null. If the scale&#39;s domain is modified programmatically, it should be reassigned to the zoom behaviour.</p>
+<p><a name="wiki-y" href="Zoom-Behavior.html#wiki-y">#</a> zoom.<b>y</b>([<i>y</i>])</p>
+<p>Specifies an y-scale whose domain should be automatically adjusted when zooming. If not specified, returns the current y-scale, which defaults to null. If the scale&#39;s domain is modified programmatically, it should be reassigned to the zoom behaviour.</p>
+<p><a name="wiki-scaleExtent" href="Zoom-Behavior.html#wiki-scaleExtent">#</a> zoom.<b>scaleExtent</b>([<i>extent</i>])</p>
+<p>Specifies the zoom scale&#39;s allowed range as a two-element array, [<em>minimum</em>, <em>maximum</em>]. If not specified, returns the current scale extent, which defaults to [0, Infinity].</p>
+<p><a name="wiki-scale" href="Zoom-Behavior.html#wiki-scale">#</a> zoom.<b>scale</b>([<i>scale</i>])</p>
+<p>Specifies the current zoom scale. If not specified, returns the current zoom scale, which defaults to 1.</p>
+<p><a name="wiki-translate" href="Zoom-Behavior.html#wiki-translate">#</a> zoom.<b>translate</b>([<i>translate</i>])</p>
+<p>Specifies the current zoom translation vector. If not specified, returns the current translation vector, which defaults to [0, 0].</p>
+<p><a name="wiki-on" href="Zoom-Behavior.html#wiki-on">#</a> zoom.<b>on</b>(<i>type</i>, <i>listener</i>)</p>
+<p>Registers the specified <em>listener</em> to receive events of the specified <em>type</em> from the zoom behavior. Currently, only the &quot;zoom&quot; event is supported. When fired, the d3.event object will contain the following properties:</p>
+<ul>
+<li>&quot;scale&quot;: a number; the current scale.</li>
+<li>&quot;translate&quot;: a two-element array representing the current translation vector.</li>
+</ul>
+
+</body>
+</html>

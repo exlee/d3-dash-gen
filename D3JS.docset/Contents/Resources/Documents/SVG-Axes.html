@@ -1,0 +1,52 @@
+<!-- single file version -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="css/github.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8" />
+</head>
+<body>
+<h1>SVG Axes</h1>
+<p>D3’s <a href="http://bl.ocks.org/1166403.html">axis component</a> displays reference lines for scales automatically. This lets you focus on displaying the data, while the axis component takes care of the tedious task of drawing axes and labeled ticks.</p>
+<h2>Axis</h2>
+<p>The axis component is designed to work with D3’s <a href="Quantitative-Scales.html">quantitative</a>, <a href="Time-Scales.html">time</a> and <a href="Ordinal-Scales.html">ordinal</a> scales.</p>
+<p><a name="wiki-axis" href="SVG-Axes.html#wiki-axis">#</a> d3.svg.<b>axis</b>()</p>
+<p>Create a new default axis.</p>
+<p><a name="wiki-_axis" href="SVG-Axes.html#wiki-_axis">#</a> <b>axis</b>(<i>selection</i>)</p>
+<p>Apply the axis to a <a href="Selections.html">selection</a> or <a href="Transitions.html">transition</a>. The selection must contain an SVG or G element. For example:</p>
+<pre><code class="lang-js">d3.select(&quot;body&quot;).append(&quot;svg&quot;)
+    .attr(&quot;class&quot;, &quot;axis&quot;)
+    .attr(&quot;width&quot;, 1440)
+    .attr(&quot;height&quot;, 30)
+  .append(&quot;g&quot;)
+    .attr(&quot;transform&quot;, &quot;translate(0,30)&quot;)
+    .call(axis);</code></pre>
+<p><a name="wiki-scale" href="#wiki-scale">#</a> axis.<b>scale</b>([<i>scale</i>])</p>
+<p>Get or set the associated scale. If <em>scale</em> is specified, sets the scale and returns the axis. If <em>scale</em> is not specified, returns the current scale which defaults to a linear scale.</p>
+<p><a name="wiki-orient" href="#wiki-orient">#</a> axis.<b>orient</b>([<i>orientation</i>])</p>
+<p>Get or set the position of the ticks and their labels in relation to the axis path. If instead you want to determine the position of the axis with respect to the plot, use the <a href="http://www.w3.org/TR/SVG/coords.html.html#TransformAttribute">transform</a> attribute. If <em>orientation</em> is specified, sets the axis <em>orientation</em> and returns the axis. If <em>orientation</em> is not specified, returns the current orientation, which defaults to &quot;bottom&quot;. Valid values are &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot; and &quot;right&quot;. For a vertical axis, specify &quot;left&quot; or &quot;right&quot;; for a horizontal axis, specify &quot;top&quot; or &quot;bottom&quot;.</p>
+<p><a name="wiki-ticks" href="#wiki-ticks">#</a> axis.<b>ticks</b>([<i>arguments…</i>])</p>
+<p>Get or set the arguments that are passed to the underlying scale’s tick function. The specified <em>arguments</em> are passed to scale.ticks to compute the tick values. For <a href="Quantitative-Scales.html#wiki-linear_ticks">quantitative scales</a>, specify the desired tick count such as <code>axis.ticks(20)</code>. For <a href="Time-Scales#wiki-ticks">time scales</a>, you can pass in a count or a function, such as <code>axis.ticks(d3.time.minutes, 15)</code>.</p>
+<p>The <em>arguments</em> are also passed to the scale’s tickFormat method to generate the default tick format. Thus, for <a href="Quantitative-Scales.html#wiki-log_tickFormat">log scales</a>, you might specify both a count and a tick format function.</p>
+<p><a name="wiki-tickValues" href="#wiki-tickValues">#</a> axis.<b>tickValues</b>([<i>values</i>])</p>
+<p>Get or set the explicit tick values. If the array <em>values</em> is specified, the values are used to generate ticks rather than using the scale&#39;s tick generator. If <em>values</em> is null, clears any previously-set explicit tick values, reverting back to the scale&#39;s tick generator. If <em>values</em> is not specified, returns the currently-set tick values, if any. For example, to generate ticks at specific values:</p>
+<pre><code class="lang-js">var xAxis = d3.svg.axis()
+    .scale(x)
+    .tickValues([1, 2, 3, 5, 8, 13, 21]);</code></pre>
+<p>The explicit tick values take precedent over the tick arguments set by <a href=".html#axis_ticks">axis.ticks</a>. Note, however, that the tick arguments are still passed to the scale&#39;s <a href="Quantitative-Scales#wiki-linear_tickFormat">tickFormat</a> function if tick format is not also set. Thus, it is valid to set both axis.ticks and axis.tickValues.</p>
+<p><a name="wiki-tickSubdivide" href="#wiki-tickSubdivide">#</a> axis.<b>tickSubdivide</b>([<i>count</i>])</p>
+<p>Get or set the tick subdivision count. If <em>count</em> is specified, sets the number of uniform subdivision ticks to make <strong>between major tick marks</strong> and returns the axis. If <em>count</em> is not specified, returns the current subdivision tick count which defaults to zero. The specified <em>count</em> specifies the number of <em>minor</em> ticks, which is one less than the number of <em>subdivisions</em>. For example, <code>axis.tickSubdivide(true)</code> produces one minor tick per major tick, thus cutting the space between each major tick in two. As another example, decimal subdivision is specified as <code>axis.tickSubdivide(9)</code>.</p>
+<p><a name="wiki-tickSize" href="#wiki-tickSize">#</a> axis.<b>tickSize</b>([<i>major</i>[​[, <i>minor</i>], <i>end</i>]])</p>
+<p>Get or set the size of major, minor and end ticks. The end ticks are determined by the associated scale&#39;s domain extent, and are part of the generated path domain rather than a tick line. Note that the end ticks may be close or even overlapping with the first or last tick. An end tick size of 0 suppresses end ticks. For example:</p>
+<pre><code class="lang-js">axis.tickSize(6); // sets the major, minor and end to 6
+axis.tickSize(6, 0); // sets major and minor to 6, end to 0
+axis.tickSize(6, 3, 0); // sets major to 6, minor to 3, and end to 0</code></pre>
+<p><a name="wiki-tickPadding" href="#wiki-tickPadding">#</a> axis.<b>tickPadding</b>([<i>padding</i>])</p>
+<p>Set or get the padding between ticks and tick labels. If <em>padding</em> is specified, sets the padding to the specified value in pixels and returns the axis. If <em>padding</em> is not specified, returns the current padding which defaults to 3 pixels.</p>
+<p><a name="wiki-tickFormat" href="#wiki-tickFormat">#</a> axis.<b>tickFormat</b>([<i>format</i>])</p>
+<p>Set or get the tick value formatter for labels. If <em>format</em> is specified, sets the format to the specified function and returns the axis. If <em>format</em> is not specified, returns the current format function, which defaults to null. A null format indicates that the scale&#39;s default formatter should be used, which is generated by calling <a href="Quantitative-Scales.html#wiki-linear_tickFormat">scale.tickFormat</a>. In this case, the arguments specified by <a href="#wiki-ticks">ticks</a> are likewise passed to scale.tickFormat.</p>
+<p>See <a href="Formatting.html#wiki-d3_format">d3.format</a> for help creating formatters. For example, <code>axis.tickFormat(d3.format(&quot;,.0f&quot;))</code> will display integers with comma-grouping for thousands.</p>
+<p>Note: for log scales, the number of ticks cannot be customized; however, the number of tick labels <em>can</em> be customized via <a href=".html#wiki-ticks">ticks</a>. Likewise, the tick formatter for log scales is typically specified via ticks rather than tickFormat, so as to preserve the default label-hiding behavior.</p>
+
+</body>
+</html>

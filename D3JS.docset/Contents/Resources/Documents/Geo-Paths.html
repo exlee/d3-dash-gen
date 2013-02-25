@@ -1,0 +1,108 @@
+<!-- single file version -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="css/github.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8" />
+</head>
+<body>
+<h1>Geo Paths</h1>
+<p>For cartographic visualizations, D3 supports a handful of components for displaying and manipulating <strong>geographic data</strong>. These components use the <a href="http://geojson.org/geojson-spec.html.html">GeoJSON format</a>—a standard way of representing geographic features in JavaScript. (See also the <a href="/mbostock/topojson.html">TopoJSON format</a>, an extension of GeoJSON that is significantly more compact.) To convert shapefiles to GeoJSON, use ogr2ogr, part of the <a href="http://www.gdal.org/.html">GDAL package</a>.</p>
+<p><a href="http://bl.ocks.org/4060606"><img src="https://raw.github.com/gist/4060606/thumbnail.png" height="120"></a></p>
+<p>Some other tools you may be interested in:</p>
+<ul>
+<li><a href="/mbostock/topojson.html">TopoJSON</a> - shapefile simplification, topology construction and GeoJSON compression.</li>
+<li><a href="http://trac.gispython.org/lab/wiki/Shapely.html">Shapely</a> - manipulation of planar geometry objects.</li>
+<li><a href="http://colorbrewer2.org.html">ColorBrewer</a> - color scales for maps.</li>
+<li><a href="http://postgis.refractions.net/.html">PostGIS</a> - a geospatial database.</li>
+</ul>
+<p>The primary mechanism for displaying geographic data is <a href=".html#wiki-path">d3.geo.path</a>. This class is similar to <a href="SVG-Shapes#wiki-line">d3.svg.line</a> and the other SVG shape generators: given a geometry or feature object, it generates the path data string suitable for the &quot;d&quot; attribute of an SVG path element. The d3.geo.path class can <a href="http://bl.ocks.org/3783604">render directly to Canvas</a>, which may offer better performance when animating the projection.</p>
+<p><a name="wiki-path" href="#wiki-path">#</a> d3.geo.<b>path</b>()</p>
+<p>Creates a new geographic path generator with the default settings: the <a href="Geo-Projections.html#wiki-albersUsa">albersUsa</a> projection and a point radius of 4.5 pixels.</p>
+<p><a name="wiki-_path" href="#wiki-_path">#</a> <b>path</b>(<i>feature</i>[, <i>index</i>])</p>
+<p>Returns the path data string for the given <em>feature</em>, which may be any GeoJSON feature or geometry object:</p>
+<ul>
+<li>Point - a single position.</li>
+<li>MultiPoint - an array of positions.</li>
+<li>LineString - an array of positions forming a continuous line.</li>
+<li>MultiLineString - an array of arrays of positions forming several lines.</li>
+<li>Polygon - an array of arrays of positions forming a polygon (possibly with holes).</li>
+<li>MultiPolygon - a multidimensional array of positions forming multiple polygons.</li>
+<li>GeometryCollection - an array of geometry objects.</li>
+<li>Feature - a feature containing one of the above geometry objects.</li>
+<li>FeatureCollection - an array of feature objects.</li>
+</ul>
+<p>The type &quot;Sphere&quot; is also supported, which is useful for rendering the outline of the globe. A sphere has no coordinates. An optional <em>index</em> may be specified, which is passed along to the <a href="Geo-Paths.html#wiki-pointRadius">pointRadius</a> accessor; the <em>index</em> is passed automatically when the path generator is invoked by <a href="Selections#wiki-attr">selection.attr</a>.</p>
+<p>To display multiple features, you can place them in a single feature collection and a single path element:</p>
+<pre><code class="lang-javascript">svg.append(&quot;path&quot;)
+    .datum({type: &quot;FeatureCollection&quot;, features: features})
+    .attr(&quot;d&quot;, d3.geo.path());</code></pre>
+<p>Alternatively, you can create multiple distinct path elements:</p>
+<pre><code class="lang-javascript">svg.selectAll(&quot;path&quot;)
+    .data(features)
+  .enter().append(&quot;path&quot;)
+    .attr(&quot;d&quot;, d3.geo.path());</code></pre>
+<p>Using distinct path elements is typically slower than a single path element for a collection. However, distinct path elements are preferred if you want interact with features separately (e.g., using CSS :hover or click events).</p>
+<p><a name="wiki-projection" href="#wiki-projection">#</a> path.<b>projection</b>([<i>projection</i>])</p>
+<p>If <em>projection</em> is specified, sets the projection used by the path generator to the specified projection function. If <em>projection</em> is not specified, returns the current projection, which defaults to <a href="Geo-Projections.html#wiki-albersUsa">albersUsa</a>. The projection is typically one of D3&#39;s built-in <a href="Geo-Projections">geographic projections</a>; however, any function can be used. A projection function takes a two-element array of numbers representing the coordinates of a location, [<i>longitude</i>, <i>latitude</i>], and returns a similar two-element array of numbers representing the projected pixel position [<i>x</i>, <i>y</i>]. For example, a rudimentary spherical Mercator projection:</p>
+<pre><code class="lang-javascript">function mercator(coordinates) {
+  return [
+    coordinates[0] / 360,
+    (-180 / Math.PI * Math.log(Math.tan(Math.PI / 4 + coordinates[1] * Math.PI / 360))) / 360
+  ];
+}</code></pre>
+<p>Internally, this point projection function is wrapped with a fallback <a href="Geo-Streams.html">stream transformation</a> that performs <a href="http://bl.ocks.org/3795544.html">adaptive resampling</a>. However, the fallback stream does not perform any clipping or cutting. For more control over the stream transformation, the <em>projection</em> may be specified as an object that implements the <em>stream</em> method. The stream method takes a stream listener as input, and returns a wrapped stream listener that projects the input geometry; in other words, it implements <a href="Geo-Projection.html#wiki-stream">projection.stream</a>.</p>
+<p>If <em>projection</em> is null, the path uses the identity transformation, where the input geometry is not projected and is instead rendered directly in raw coordinates. This can be useful for fast rendering of already-projected geometry, or for fast rendering of the equirectangular projection.</p>
+<p><a name="wiki-context" href="#wiki-context">#</a> path.<b>context</b>([<i>context</i>])</p>
+<p>If <em>context</em> is specified, sets the render context and returns the path generator. If the context is null, then the path generator will return an SVG path string when <a href=".html#wiki-_path">invoked</a> on a given feature. If the context is non-null, the path generator will instead call methods on the specified context to render geometry. The context must implement the following methods:</p>
+<ul>
+<li>beginPath()</li>
+<li>moveTo(x, y)</li>
+<li>lineTo(x, y)</li>
+<li>arc(x, y, radius, startAngle, endAngle)</li>
+<li>closePath()</li>
+</ul>
+<p>Note that this is a subset of the canvas element’s <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html.html#2dcontext">2D rendering context</a>, and thus a canvas context can be passed to the path generator, in which case geometry will be rendered <a href="http://bl.ocks.org/3783604">directly to the canvas</a>. If <em>context</em> is not specified, returns the current render context, which defaults to null.</p>
+<p><a name="wiki-area" href="#wiki-area">#</a> path.<b>area</b>(<i>feature</i>)</p>
+<p>Computes the projected area (in square pixels) for the specified <em>feature</em>. Point, MultiPoint, LineString and MultiLineString features have zero area. For Polygon and MultiPolygon features, this method first computes the area of the exterior ring, and then subtracts the area of any interior holes. This method observes any clipping and resampling performed by the projection stream.</p>
+<p><a name="wiki-centroid" href="#wiki-centroid">#</a> path.<b>centroid</b>(<i>feature</i>)</p>
+<p>Computes the projected centroid (in pixels) for the specified <em>feature</em>. This is handy for, say, labeling state or county boundaries, or displaying a symbol map. The <a href="http://mbostock.github.com/d3/ex/cartogram.html.html">noncontiguous cartogram</a> example scales each state around its centroid. This method observes any clipping and resampling performed by the projection stream.</p>
+<p><a name="wiki-bounds" href="#wiki-bounds">#</a> path.<b>bounds</b>(<i>feature</i>)</p>
+<p>Computes the projected bounding box (in pixels) for the specified <em>feature</em>. This is handy for, say, zooming in to a particular feature. This method observes any clipping and resampling performed by the projection stream.</p>
+<p><a name="wiki-pointRadius" href="#wiki-pointRadius">#</a> path.<b>pointRadius</b>([<i>radius</i>])</p>
+<p>If <em>radius</em> is specified, sets the radius used to display Point and MultiPoint features to the specified number. If <em>radius</em> is not specified, returns the current radius. While the radius is commonly specified as a number constant, it may also be specified as a function which is computed per feature, being passed the <em>feature</em> and <em>index</em> arguments from the <a href="Geo-Paths.html#wiki-_path">path</a> function. For example, if your GeoJSON data has additional properties, you might access those properties inside the radius function to vary the point size; alternatively, you could <a href="SVG-Shapes#wiki-symbol">d3.svg.symbol</a> and a <a href="Geo-Projections">projection</a> for more control over the display.</p>
+<h2>Shape Generators</h2>
+<p><a name="wiki-greatArc" href="#wiki-greatArc">#</a> d3.geo.<b>greatArc</b>()</p>
+<p>Constructs a feature generator for creating the great arc between two geographic points, using a segment of a <a href="http://en.wikipedia.org/wiki/Great_circle">great circle</a>. The great arc represents the shortest path between the two points on the surface of the sphere.</p>
+<p><a name="wiki-_greatArc" href="#wiki-_greatArc">#</a> <b>greatArc</b>(<i>arguments…</i>)</p>
+<p>Returns a GeoJSON LineString approximating a great circle segment. The source and target accessors specify how to determine the source and target points for the given <em>arguments</em>; the default accessors expect a single argument with source and target properties: <code>{source: …, target: …}</code>.</p>
+<p><a name="wiki-greatArc_distance" href="#wiki-greatArc_distance">#</a> greatArc.<b>distance</b>(<i>arguments…</i>)</p>
+<p>Returns the length of the great arc between the two points represented by <em>arguments</em> in radians. To convert the angular distance to a linear one, simply multiply by the radius of the sphere, which is around <em>6,371km</em> on average for Earth. The source and target accessors specify how to determine the source and target points for the given <em>arguments</em>; the default accessors expect a single argument with source and target properties: <code>{source: …, target: …}</code>.</p>
+<p><a name="wiki-greatArc_source" href="#wiki-greatArc_source">#</a> greatArc.<b>source</b>([<i>source</i>])</p>
+<p>If <em>source</em> is specified, sets the <em>source</em>-accessor to the specified function or constant point, [<i>longitude</i>, <i>latitude</i>]. If <em>source</em> is not specified, returns the current <em>source</em>-accessor.  This accessor is invoked every time the interpolator is called.  The default is <code>function(d) { return d.source; }</code>.</p>
+<p><a name="wiki-greatArc_target" href="#wiki-greatArc_target">#</a> greatArc.<b>target</b>([<i>target</i>])</p>
+<p>If <em>target</em> is specified, sets the <em>target</em>-accessor to the specified function or constant point, [<i>longitude</i>, <i>latitude</i>]. If <em>source</em> is not specified, returns the current <em>target</em>-accessor.  This accessor is invoked every time the interpolator is called.  The default is <code>function(d) { return d.target; }</code>.</p>
+<p><a name="wiki-greatArc_precision" href="#wiki-greatArc_precision">#</a> greatArc.<b>precision</b>([<i>precision</i>])</p>
+<p>If <em>precision</em> is specified, sets the maximum segment length of the interpolated path in degrees. If <em>precision</em> is not specified, returns the current precision, which defaults to 6°.</p>
+<p><a name="wiki-circle" href="#wiki-circle">#</a> d3.geo.<b>circle</b></p>
+<p>Constructs a feature generator for creating circles centered at a given geographic location with a given radius in degrees.</p>
+<p><a name="wiki-_circle" href="#wiki-_circle">#</a> <b>circle</b>(<i>arguments…</i>)</p>
+<p>Returns a GeoJSON Polygon approximating a circle. The origin accessor specifies how to determine the origin for the given <em>arguments</em>; the default accessor uses the constant ⟨0°,0°⟩.</p>
+<p><a name="wiki-circle_origin" href="#wiki-circle_origin">#</a> circle.<b>origin</b>([<i>origin</i>])</p>
+<p>If <em>origin</em> is specified, sets the circle origin.  A two-element coordinate array should be specified, or an accessor function.  If <em>origin</em> is not specified, returns the current origin, which defaults to ⟨0°,0°⟩.</p>
+<p><a name="wiki-circle_angle" href="#wiki-circle_angle">#</a> circle.<b>angle</b>([<i>angle</i>])</p>
+<p>If <em>angle</em> is specified, sets the angular radius of the circle in degrees.  If <em>angle</em> is not specified, returns the current radius, which defaults to 90°.</p>
+<p><a name="wiki-circle_precision" href="#wiki-circle_precision">#</a> circle.<b>precision</b>([<i>precision</i>])</p>
+<p>If <em>precision</em> is specified, sets the precision of the interpolated circle segments in degrees.  These interpolated segments are inserted when a feature is clipped by the circle. If <em>precision</em> is not specified, returns the current precision, which defaults to 6°.</p>
+<h2>Spherical Math</h2>
+<p><a name="wiki-d3_geo_area" href="#wiki-d3_geo_area">#</a> d3.geo.<b>area</b>(<i>feature</i>)</p>
+<p>Returns the spherical area of the specified <em>feature</em> in <a href="http://mathworld.wolfram.com/Steradian.html.html">steradians</a>. See also <a href=".html#wiki-area">path.area</a>, which computes the projected area on the Cartesian plane.</p>
+<p><a name="wiki-d3_geo_centroid" href="#wiki-d3_geo_centroid">#</a> d3.geo.<b>centroid</b>(<i>feature</i>)</p>
+<p>Returns the spherical centroid of the specified <em>feature</em>. See also <a href=".html#wiki-centroid">path.centroid</a>, which computes the projected centroid on the Cartesian plane.</p>
+<p><a name="wiki-d3_geo_bounds" href="#wiki-d3_geo_bounds">#</a> d3.geo.<b>bounds</b>(<i>feature</i>)</p>
+<p>Returns the spherical bounding box for the specified <em>feature</em>. The bounding box is represented by a two-dimensional array: [​[<i>left</i>, <i>bottom</i>], [<i>right</i>, <i>top</i>]​], where <em>left</em> is the minimum longitude, <em>bottom</em> is the minimum latitude, <em>right</em> is maximum longitude, and <em>top</em> is the maximum latitude. See also <a href=".html#wiki-bounds">path.bounds</a>, which computes the projected bounding box on the Cartesian plane.</p>
+<p><a name="wiki-d3_geo_interpolate" href="#wiki-d3_geo_interpolate">#</a> d3.geo.<b>interpolate</b>(<i>a</i>, <i>b</i>)</p>
+<p>Returns an interpolator given the two locations <em>a</em> and <em>b</em>. Each location must be represented as a two-element array of [<i>longitude</i>, <i>latitude</i>]. The returned interpolator is a function which takes a single parameter <em>t</em> as input, where <em>t</em> ranges from 0 to 1. A value of 0 returns the location <em>a</em>, while a value of 1 returns the location <em>b</em>. Intermediate values interpolate from <em>a</em> to <em>b</em> along the spanning great arc.</p>
+
+</body>
+</html>

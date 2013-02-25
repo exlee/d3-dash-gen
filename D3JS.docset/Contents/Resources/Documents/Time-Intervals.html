@@ -1,0 +1,110 @@
+<!-- single file version -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="css/github.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8" />
+</head>
+<body>
+<h1>Time Intervals</h1>
+<p><strong>Time intervals</strong> are irregular! For example, there are 60 seconds in a minute, but 24 hours in a day. Even more confusing, some days have 23 or 25 hours due to <a href="http://en.wikipedia.org/wiki/Daylight_saving_time.html">daylight saving time</a>, and the standard <a href="http://en.wikipedia.org/wiki/Gregorian_calendar.html">Gregorian calendar</a> uses months of differing lengths. And then there are leap years and leap seconds!</p>
+<p>To simplify manipulation of and iteration over time intervals, D3 provides a handful of time utilities in addition to the time <a href="Time-Scales.html">scale</a> and <a href="Time-Formatting.html">format</a>. The utilities support both local time and UTC time. Local time is determined by the browser&#39;s JavaScript runtime; arbitrary time zone support would be nice, but requires access to the Olson zoneinfo files.</p>
+<h2>Interval</h2>
+<p><a name="wiki-interval" href="#wiki-interval">#</a> d3.time.<i>interval</i></p>
+<p>Returns the specified <em>interval</em>. The following intervals are supported:</p>
+<ul>
+<li>d3.time.<a href=".html#wiki-second">second</a></li>
+<li>d3.time.<a href=".html#wiki-minute">minute</a></li>
+<li>d3.time.<a href=".html#wiki-hour">hour</a></li>
+<li>d3.time.<a href=".html#wiki-day">day</a></li>
+<li>d3.time.<a href=".html#wiki-week">week</a> (alias for d3.time.<a href="#wiki-sunday">sunday</a>)</li>
+<li>d3.time.<a href=".html#wiki-sunday">sunday</a></li>
+<li>d3.time.<a href=".html#wiki-monday">monday</a></li>
+<li>d3.time.<a href=".html#wiki-tuesday">tuesday</a></li>
+<li>d3.time.<a href=".html#wiki-wednesday">wednesday</a></li>
+<li>d3.time.<a href=".html#wiki-thursday">thursday</a></li>
+<li>d3.time.<a href=".html#wiki-friday">friday</a></li>
+<li>d3.time.<a href=".html#wiki-saturday">saturday</a></li>
+<li>d3.time.<a href=".html#wiki-month">month</a></li>
+<li>d3.time.<a href=".html#wiki-year">year</a></li>
+</ul>
+<p><a name="wiki-_interval" href="#wiki-_interval">#</a> <i>interval</i>(<i>date</i>)</p>
+<p>Alias for <em>interval</em>.floor(<em>date</em>). For example, <code>d3.time.day(new Date())</code> returns midnight (12:00 AM) on the current day, in local time.</p>
+<p><a name="wiki-interval_floor" href="#wiki-interval_floor">#</a> <i>interval</i>.<b>floor</b>(<i>date</i>)</p>
+<p>Returns the latest time interval before or equal to the specified <em>date</em>. For example, <code>d3.time.day.floor(new Date())</code> returns midnight (12:00 AM) on the current day, in local time.</p>
+<p><a name="wiki-interval_round" href="#wiki-interval_round">#</a> <i>interval</i>.<b>round</b>(<i>date</i>)</p>
+<p>Returns the closest time interval to the specified <em>date</em>. For example, <code>d3.time.day.round(new Date())</code> returns midnight (12:00 AM) on the current day if it is on or before noon, and midnight of the following day if it is after noon.</p>
+<p><a name="wiki-interval_ceil" href="#wiki-interval_ceil">#</a> <i>interval</i>.<b>ceil</b>(<i>date</i>)</p>
+<p>Returns the earliest time interval after the specified <em>date</em>. For example, <code>d3.time.day.ceil(new Date())</code> returns midnight (12:00 AM) on the following day, in local time.</p>
+<p><a name="wiki-interval_range" href="#wiki-interval_range">#</a> <i>interval</i>.<b>range</b>(<i>start</i>, <i>stop</i>[, <i>step</i>])</p>
+<p>Returns every time interval after or equal to <em>start</em> and before <em>stop</em>.  If <em>step</em> is specified, then every <em>step</em>&#39;th interval will be returned, based on the interval number (such as day of month for d3.time.day). For example, a <em>step</em> of 2 will return the 1st, 3rd, 5th <em>etc.</em> of the month with d3.time.day.</p>
+<p><a name="wiki-interval_offset" href="#wiki-interval_offset">#</a> <i>interval</i>.<b>offset</b>(<i>date</i>, <i>step</i>)</p>
+<p>Returns a new date equal to <em>date</em> plus <em>step</em> intervals. If <em>step</em> is negative, then the returned date will be before the specified <em>date</em>; if <em>step</em> is zero, then a copy of the specified <em>date</em> is returned. This method does not round the specified <em>date</em> to the interval. For example, if it is currently 5:34 PM, then <code>d3.time.day.offset(new Date(), 1)</code> returns 5:34 PM tomorrow (even if Daylight Savings Time changes!).</p>
+<p><a name="wiki-interval_utc" href="#wiki-interval_utc">#</a> <i>interval</i>.<b>utc</b></p>
+<p>Returns a corresponding time interval in UTC rather than local time. For example, <code>d3.time.day.range(start, stop)</code> returns local time days between <em>start</em> and <em>stop</em>, while <code>d3.time.day.utc.range(start, stop)</code> returns UTC days between <em>start</em> and <em>stop</em>.</p>
+<h2>Intervals</h2>
+<p><a name="wiki-second" href="#wiki-second">#</a> d3.time.<b>second</b></p>
+<p>Seconds (e.g., 01:23:45.0000 AM). Always 1,000 milliseconds long.</p>
+<p><a name="wiki-minute" href="#wiki-minute">#</a> d3.time.<b>minute</b></p>
+<p>Minutes (e.g., 01:02:00 AM). Most browsers do not support leap seconds, so minutes are almost always 60 seconds (6e4 milliseconds) long.</p>
+<p><a name="wiki-hour" href="#wiki-hour">#</a> d3.time.<b>hour</b></p>
+<p>Hours (e.g., 01:00 AM). 60 minutes long (36e5 milliseconds). Note that advancing time by one hour can return the same hour number, or skip an hour number, due to Daylight Savings Time.</p>
+<p><a name="wiki-day" href="#wiki-day">#</a> d3.time.<b>day</b></p>
+<p>Days (e.g., February 7, 2012 at 12:00 AM). Most days are 24 hours long (864e5 milliseconds); however, with Daylight Savings Time, a day may be 23 or 25 hours long.</p>
+<p><a name="wiki-week" href="#wiki-week">#</a> d3.time.<b>week</b></p>
+<p>Alias for d3.time.<a href=".html#wiki-sunday">sunday</a>. A week is always 7 days, but ranges between 167 and 169 hours depending on Daylight Savings Time.</p>
+<p><a name="wiki-sunday" href="#wiki-sunday">#</a> d3.time.<b>sunday</b></p>
+<p>Sunday-based weeks (e.g., February 5, 2012 at 12:00 AM).</p>
+<p><a name="wiki-monday" href="#wiki-monday">#</a> d3.time.<b>monday</b></p>
+<p>Monday-based weeks (e.g., February 6, 2012 at 12:00 AM).</p>
+<p><a name="wiki-tueday" href="#wiki-tueday">#</a> d3.time.<b>tueday</b></p>
+<p>Tueday-based weeks (e.g., February 7, 2012 at 12:00 AM).</p>
+<p><a name="wiki-wednesday" href="#wiki-wednesday">#</a> d3.time.<b>wednesday</b></p>
+<p>Wednesday-based weeks (e.g., February 8, 2012 at 12:00 AM).</p>
+<p><a name="wiki-thursday" href="#wiki-thursday">#</a> d3.time.<b>thursday</b></p>
+<p>Thursday-based weeks (e.g., February 9, 2012 at 12:00 AM).</p>
+<p><a name="wiki-friday" href="#wiki-friday">#</a> d3.time.<b>friday</b></p>
+<p>Friday-based weeks (e.g., February 10, 2012 at 12:00 AM).</p>
+<p><a name="wiki-saturday" href="#wiki-saturday">#</a> d3.time.<b>saturday</b></p>
+<p>Saturday-based weeks (e.g., February 11, 2012 at 12:00 AM).</p>
+<p><a name="wiki-month" href="#wiki-month">#</a> d3.time.<b>month</b></p>
+<p>Months (e.g., February 1, 2012 at 12:00 AM). Ranges between 28 and 31 days.</p>
+<p><a name="wiki-year" href="#wiki-year">#</a> d3.time.<b>year</b></p>
+<p>Years (e.g., January 1, 2012 at 12:00 AM). Normal years are 365 days long; leap years are 366.</p>
+<h2>Aliases</h2>
+<p><a name="wiki-seconds" href="#wiki-seconds">#</a> d3.time.<b>seconds</b>(<i>start</i>, <i>stop</i>[, <i>step</i>])</p>
+<p>Alias for d3.time.<a href=".html#wiki-second">second</a>.<a href="#wiki-interval_range">range</a>. Returns the second boundaries (e.g., 01:23:45 AM) after or equal to <em>start</em> and before <em>stop</em>. If <em>step</em> is specified, then every <em>step</em>&#39;th second will be returned, based on the second of the minute. For example, a <em>step</em> of 15 will return 9:01:45 PM, 9:02:00 PM, 9:02:15 PM, <em>etc.</em></p>
+<p><a name="wiki-minutes" href="#wiki-minutes">#</a> d3.time.<b>minutes</b>(<i>start</i>, <i>stop</i>[, <i>step</i>])</p>
+<p>Alias for d3.time.<a href=".html#wiki-minute">minute</a>.<a href="#wiki-interval_range">range</a>. Returns the minute boundaries (e.g., 01:23 AM) after or equal to <em>start</em> and before <em>stop</em>. If <em>step</em> is specified, then every <em>step</em>&#39;th minute will be returned, based on the minute of the hour. For example, a <em>step</em> of 15 will return 9:45 PM, 10:00 PM, 10:15 PM, <em>etc.</em></p>
+<p><a name="wiki-hours" href="#wiki-hours">#</a> d3.time.<b>hours</b>(<i>start</i>, <i>stop</i>[, <i>step</i>])</p>
+<p>Alias for d3.time.<a href=".html#wiki-hour">hour</a>.<a href="#wiki-interval_range">range</a>. Returns the hour boundaries (e.g., 01 AM) after or equal to <em>start</em> and before <em>stop</em>. If <em>step</em> is specified, then every <em>step</em>&#39;th hour will be returned, based on the hour of the day. For example, a <em>step</em> of 3 will return 9 PM, 12 AM, 3 AM, <em>etc.</em></p>
+<p><a name="wiki-days" href="#wiki-days">#</a> d3.time.<b>days</b>(<i>start</i>, <i>stop</i>[, <i>step</i>])</p>
+<p>Alias for d3.time.<a href=".html#wiki-day">day</a>.<a href="#wiki-interval_range">range</a>. Returns the day boundaries (midnight) after or equal to <em>start</em> and before <em>stop</em>. If <em>step</em> is specified, then every <em>step</em>&#39;th date will be returned, based on the day of the month. For example, a <em>step</em> of 2 will return the 1st, 3rd, 5th <em>etc.</em> of the month.</p>
+<p><a name="wiki-weeks" href="#wiki-weeks">#</a> d3.time.<b>weeks</b>(<i>start</i>, <i>stop</i>[, <i>step</i>])
+<br><a name="wiki-sundays" href="#wiki-sundays">#</a> d3.time.<b>sundays</b>(<i>start</i>, <i>stop</i>[, <i>step</i>])
+<br><a name="wiki-mondays" href="#wiki-mondays">#</a> d3.time.<b>monday</b>(<i>start</i>, <i>stop</i>[, <i>step</i>])
+<br><a name="wiki-tuesdays" href="#wiki-tuesdays">#</a> d3.time.<b>tuesday</b>(<i>start</i>, <i>stop</i>[, <i>step</i>])
+<br><a name="wiki-wednesdays" href="#wiki-wednesdays">#</a> d3.time.<b>wednesday</b>(<i>start</i>, <i>stop</i>[, <i>step</i>])
+<br><a name="wiki-thursdays" href="#wiki-thursdays">#</a> d3.time.<b>thursday</b>(<i>start</i>, <i>stop</i>[, <i>step</i>])
+<br><a name="wiki-fridays" href="#wiki-fridays">#</a> d3.time.<b>friday</b>(<i>start</i>, <i>stop</i>[, <i>step</i>])
+<br><a name="wiki-saturdays" href="#wiki-saturdays">#</a> d3.time.<b>saturday</b>(<i>start</i>, <i>stop</i>[, <i>step</i>])</p>
+<p>Aliases for d3.time.<i>interval</i>.<a href=".html#wiki-interval_range">range</a> etc. Returns the week boundaries (midnight Sunday) after or equal to <em>start</em> and before <em>stop</em>. If <em>step</em> is specified, then every <em>step</em>&#39;th week will be returned, based on the week of the year. For example, a <em>step</em> of 4 will return January 2, January 30, February 27, <em>etc.</em></p>
+<p><a name="wiki-months" href="#wiki-months">#</a> d3.time.<b>months</b>(<i>start</i>, <i>stop</i>[, <i>step</i>])</p>
+<p>Alias for d3.time.<a href=".html#wiki-month">month</a>.<a href="#wiki-interval_range">range</a>. Returns the month boundaries (e.g., January 01) after or equal to <em>start</em> and before <em>stop</em>. If <em>step</em> is specified, then every <em>step</em>&#39;th month will be returned, based on the month of the year. For example, a <em>step</em> of 3 will return January, April, July, <em>etc.</em></p>
+<p><a name="wiki-years" href="#wiki-years">#</a> d3.time.<b>years</b>(<i>start</i>, <i>stop</i>[, <i>step</i>])</p>
+<p>Alias for d3.time.<a href=".html#wiki-year">year</a>.<a href="#wiki-interval_range">range</a>. Returns the year boundaries (midnight January 1st) after or equal to <em>start</em> and before <em>stop</em>. If <em>step</em> is specified, then every <em>step</em>&#39;th year will be returned. For example, a <em>step</em> of 5 will return 2010, 2015, 2020, <em>etc.</em></p>
+<h2>Counting</h2>
+<p><a name="wiki-dayOfYear" href="#wiki-dayOfYear">#</a> d3.time.<b>dayOfYear</b>(<i>date</i>)</p>
+<p>Returns the day number for the given date. The first day of the year (January 1) is always the 0th day. Unlike the <a href="Time-Formatting.html">d3.time.format</a>&#39;s %j directive, dayOfYear is 0-based rather than 1-based.</p>
+<p><a name="wiki-weekOfYear" href="#wiki-weekOfYear">#</a> d3.time.<b>weekOfYear</b>(<i>date</i>)
+<br><a name="wiki-sundayOfYear" href="#wiki-sundayOfYear">#</a> d3.time.<b>sundayOfYear</b>(<i>date</i>)
+<br><a name="wiki-mondayOfYear" href="#wiki-mondayOfYear">#</a> d3.time.<b>mondayOfYear</b>(<i>date</i>)
+<br><a name="wiki-tuesdayOfYear" href="#wiki-tuesdayOfYear">#</a> d3.time.<b>tuesdayOfYear</b>(<i>date</i>)
+<br><a name="wiki-wednesdayOfYear" href="#wiki-wednesdayOfYear">#</a> d3.time.<b>wednesdayOfYear</b>(<i>date</i>)
+<br><a name="wiki-thursdayOfYear" href="#wiki-thursdayOfYear">#</a> d3.time.<b>thursdayOfYear</b>(<i>date</i>)
+<br><a name="wiki-fridayOfYear" href="#wiki-fridayOfYear">#</a> d3.time.<b>fridayOfYear</b>(<i>date</i>)
+<br><a name="wiki-saturdayOfYear" href="#wiki-saturdayOfYear">#</a> d3.time.<b>saturdayOfYear</b>(<i>date</i>)</p>
+<p>Returns the week number for the given date, where weeks start with the given <i>day</i>. The first day of the year (January 1) is always the 0th week. weekOfYear is an alias for sundayOfYear, which is equivalent to <a href="Time-Formatting.html">d3.time.format</a>&#39;s %U directive. mondayOfYear is equivalent to <a href="Time-Formatting.html">d3.time.format</a>&#39;s %W directive.</p>
+
+</body>
+</html>

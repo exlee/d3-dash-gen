@@ -1,0 +1,31 @@
+<!-- single file version -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="css/github.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8" />
+</head>
+<body>
+<h1>Histogram Layout</h1>
+<p>A <strong>histogram layout</strong> shows the distribution of data by grouping discrete data points into bins. See <a href="http://bl.ocks.org/3048450.html">bl.ock 3048450</a> for example usage.</p>
+<p><a name="wiki-histogram" href="Histogram-Layout.html#wiki-histogram">#</a> d3.layout.<b>histogram</b>()</p>
+<p>Constructs a new histogram function with the default value accessor, range function, and bin function. By default, the histogram function returns frequencies. The returned layout object is both an object and a function. That is: you can call the layout like any other function, and the layout has additional methods that change its behavior. Like other classes in D3, layouts follow the method chaining pattern where setter methods return the layout itself, allowing multiple setters to be invoked in a concise statement.</p>
+<p><a name="wiki-_histogram" href="Histogram-Layout.html#wiki-_histogram">#</a> <b>histogram</b>(<i>values</i>[, <i>index</i>])</p>
+<p>Evaluates the histogram function on the specified array of <em>values</em>. An optional <em>index</em> may be specified, which is passed along to the range and bin function. The return value is an array of arrays: each element in the outer array represents a bin, and each bin contains the associated elements from the input <em>values</em>. In addition, each bin has three attributes:</p>
+<ul>
+<li>x - the lower bound of the bin (inclusive).</li>
+<li>dx - the width of the bin; x + dx is the upper bound (exclusive).</li>
+<li>y - the count (if <a href="Histogram-Layout.html#wiki-frequency">frequency</a> is true), or the probability (if frequency is false).</li>
+</ul>
+<p>Note that the y attribute is the same as the length attribute, in frequency mode.</p>
+<p><a name="wiki-value" href="Histogram-Layout.html#wiki-value">#</a> histogram.<b>value</b>([<i>accessor</i>])</p>
+<p>Specifies how to extract a value from the associated data; <em>accessor</em> is a function which is invoked on each input value passed to <a href="Histogram-Layout.html#wiki-_histogram">histogram</a>, equivalent to calling <em>values.map(accessor)</em> before computing the histogram. The default value function is the built-in <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number">Number</a>, which is similar to the identity function. If <em>accessor</em> is not specified, returns the current value accessor.</p>
+<p><a name="wiki-range" href="Histogram-Layout.html#wiki-range">#</a> histogram.<b>range</b>([<i>range</i>])</p>
+<p>Specifies the range of the histogram. Values outside the specified range will be ignored. The <em>range</em> may be specified either as a two-element array representing the minimum and maximum value of the range, or as a function that returns the range given the array of <em>values</em> and the current <em>index</em> passed to <a href="Histogram-Layout.html#wiki-_histogram">histogram</a>. The default range is the extent (<a href="Arrays#wiki-d3_min">minimum</a> and <a href="Arrays#wiki-d3_max">maximum</a>) of the values. If <em>range</em> is not specified, returns the current range function.</p>
+<p><a name="wiki-bins" href="Histogram-Layout.html#wiki-bins">#</a> histogram.<b>bins</b>([<i>bins</i>])</p>
+<p>Specifies how to bin values in the histogram. The <em>bins</em> may be specified as a number, in which case the range of values will be split uniformly into the given number of bins. Or, <em>bins</em> may be an array of threshold values, defining the bins; the specified array must contain the rightmost (upper) value, thus specifying <em>n</em> + 1 values for <em>n</em> bins. Or, <em>bins</em> may be a function which is evaluated, being passed the <a href="Histogram-Layout.html#wiki-range">range</a>, the array of <em>values</em> and the current <em>index</em> passed to <a href="Histogram-Layout#wiki-_histogram">histogram</a>, returning an array of thresholds. The default bin function will divide the values into uniform bins using <a href="http://en.wikipedia.org/wiki/Histogram">Sturges&#39; formula</a>.</p>
+<p><a name="wiki-frequency" href="Histogram-Layout.html#wiki-frequency">#</a> histogram.<b>frequency</b>([<i>frequency</i>])</p>
+<p>Specifies whether the histogram&#39;s <code>y</code> value is a count (frequency) or a probability (density); the default is frequency. If <em>frequency</em> is not specified, returns the current frequency boolean.</p>
+
+</body>
+</html>
