@@ -6,6 +6,6 @@
   "dependencies": {
     "marked": "~0.2.8",
     "sequelize": "~1.6.0-beta4",
-    "sqlite3": "~2.1.5",
+    "sqlite3": "~2.1.5"
   }
 }
