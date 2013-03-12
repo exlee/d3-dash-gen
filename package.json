@@ -4,6 +4,7 @@
   "author": "Przemysław Kamiński",
   "version": "0.0.1",
   "dependencies": {
+    "async": "~0.2.6",
     "marked": "~0.2.8",
     "sequelize": "~1.6.0-beta4",
     "sqlite3": "~2.1.5"
